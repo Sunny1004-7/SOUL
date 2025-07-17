@@ -1,0 +1,10 @@
+{
+  "二次方程求解_困惑紧张_10": {
+    "problem_scenario": "二次方程求解教学",
+    "student_emotions": ["困惑", "紧张"],
+    "student_understanding_level": 7.5,
+    "teacher_strategies": ["情感支持策略", "认知支持策略", "启发式引导"],
+    "effectiveness_score": 8.5,
+    "applicable_conditions": ["学生对数学概念感到困惑", "学生情绪紧张需要支持", "需要因式分解知识讲解"]
+  }
+}

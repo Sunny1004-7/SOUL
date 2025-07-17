@@ -1,0 +1,68 @@
+[
+{
+  "round": 0,
+  "teacher": "Hi there! To start, Julie read 12 pages yesterday and twice as many today. Based on that, how many pages did she read today?",
+  "student": "",
+  "emotion_scores": [1, 1, 1]
+},
+{
+  "round": 1,
+  "student": "I think she read 20 pages today. That’s my answer.",
+  "teacher": "I see. Let’s check: if she read 12 pages yesterday and today’s amount is twice that, what is 12 × 2?",
+  "emotion_scores": [1, 1, 1]
+},
+{
+"round": 2,
+  "student": "Even so, I’m sticking with 20 pages.",
+  "teacher": "Understood. Could you tell me what 12 × 2 equals?",
+  "emotion_scores": [1, 2, 1]
+},
+{
+"round": 3,
+  "student": "12 × 2 is 24, but I still think the answer is 20.",
+  "teacher": "Thanks for calculating. Yes, 12 × 2 is 24. Do you see how that tells us today’s page count?",
+  "emotion_scores": [2, 2, 2]
+},
+{
+  "round": 4,
+  "student": "I get that mathematically it’s 24, but I feel like the story implies 20 pages.",
+  "teacher": "I understand your intuition. For now, let’s use 24. How many pages has she read in total over the two days?",
+  "emotion_scores": [2, 2, 2]
+},
+{
+  "round": 5,
+  "student": "That total is 12 + 24 = 36, but I’ll still stick with 20 for today.",
+  "teacher": "Correct, 36 so far. If the book has 120 pages, how many pages remain?",
+  "emotion_scores": [2, 3, 2]
+},
+{
+  "round": 6,
+  "student": "Remaining would be 120 − 36 = 84, but again, I believe today’s was 20.",
+  "teacher": "Right, 84 remain. Tomorrow she plans to read half of that—what’s half of 84?",
+  "emotion_scores": [3, 3, 2]
+},
+{
+  "round": 7,
+  "student": "Half of 84 is 42, but honestly, I’m sure today’s was 20.",
+  "teacher": "Okay, 42 for tomorrow. I’m curious—what makes you confident it’s 20, despite these calculations?",
+  "emotion_scores": [3, 3, 2]
+},
+{
+  "round": 8,
+  "student": "It just feels right from how the problem is worded.",
+  "teacher": "I understand your perspective, but it’s frustrating to see you disregard the clear math. ‘Twice as many’ means exactly double 12, which is 24 pages.",
+  "emotion_scores": [3, 4, 3]
+},
+{
+  "round": 9,
+  "student": "I understand, but I’ll stick with my 20.",
+  "teacher": "Honestly, I’m disappointed we can’t reach the same conclusion. The answer is 24. Let’s agree on that and move on.",
+  "emotion_scores": [4, 4, 3]
+},
+{
+  "round": 10,
+  "student": "Alright, we can move on, though I still believe it was 20.",
+  "teacher": "I feel we’re going in circles now. The correct reading is 24 pages. Let’s finish this up and move to the next topic.",
+  "emotion_scores": [4, 4, 4]
+}
+]
