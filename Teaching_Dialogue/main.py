@@ -509,7 +509,7 @@ def main():
             print(f"监控审核次数: {monitor_agent.get_review_statistics()['total_reviews']}")
             print(f"反思生成经验数: {reflection_agent.get_reflection_statistics()['experiences_generated']}")
             print(f"知识状态分析次数: {knowledge_agent.get_knowledge_statistics()['records_analyzed']}")
-            print(f"跟踪知识点数: {knowledge_agent.get_knowledge_statistics()['total_knowledge_points']}")
+            print(f"习题记录总数: {knowledge_agent.get_knowledge_statistics()['total_exercise_records']}")
             
             # 详细的经验库统计
             try:

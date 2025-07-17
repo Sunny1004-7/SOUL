@@ -107,7 +107,10 @@ class ReflectionAgent(BaseAgent):
             problem_scenario = experience.get("problem_scenario", "未知问题")
             student_emotions = experience.get("student_emotions", ["未知"])
             emotion_str = "_".join(student_emotions[:2]) if student_emotions else "未知"
-            experience_key = f"{problem_scenario[:10]}_{emotion_str}_{len(conversation_history)}"
+            
+            # 计算实际对话轮数（只计算学生发言的轮数）
+            conversation_rounds = len([msg for msg in conversation_history if msg.get("sender") == "student"])
+            experience_key = f"{problem_scenario[:10]}_{emotion_str}_{conversation_rounds}"
             
             # 直接存储到JSON文件
             success = self._store_experience_to_json(experience_key, experience)
@@ -192,6 +195,14 @@ class ReflectionAgent(BaseAgent):
             "experiences_generated": self.state.get("experiences_generated", 0),
             "agent_status": "active" if self.running else "inactive"
         }
+    
+    def perform_conversation_reflection(self, conversation_id: str, conversation_history: list, 
+                                      student_final_state: Dict[str, Any], teacher_final_state: Dict[str, Any]) -> Dict[str, Any]:
+        """公共方法：执行对话反思（供外部调用）"""
+        if self.logger:
+            self.logger.log_agent_work("REFLECTION", "收到外部反思请求", f"对话ID: {conversation_id}")
+        
+        return self._perform_conversation_summary_reflection(conversation_history)
 
     def _generate_standard_experience_from_conversation(self, conversation_text: str, conversation_history: List[Dict[str, Any]]) -> Dict[str, Any]:
         """通过LLM分析对话，生成标准格式的经验数据"""
