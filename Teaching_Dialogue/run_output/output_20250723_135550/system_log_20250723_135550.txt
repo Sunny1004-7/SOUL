@@ -1,0 +1,560 @@
+[13:53:00.303] [TEACHER_AGENT] 初始化完成: 知识感知型ICECoT教师智能体已就绪
+[13:53:02.544] [STUDENT_AGENT] 历史记录加载: 题目数: 10
+[13:53:02.552] [STUDENT_AGENT] 初始化完成: 学生ID: None, 人格: 主动对老师提出的开放性问题作答并延伸讨论；提出自己的疑问。, 历史题目数: 10
+[13:53:02.552] [MONITOR_AGENT] 初始化完成: 教学质量监控系统已就绪
+[13:53:04.766] [KNOWLEDGE_AGENT] 数据加载失败: 加载学生记录失败: 'StudentDataLoader' object has no attribute 'get_student_history'
+[13:53:04.770] [KNOWLEDGE_AGENT] 初始化完成: 已加载0条习题记录
+[13:53:04.770] [ORCHESTRATOR_AGENT_AGENT] 初始化完成: 对话协调器已就绪
+[13:53:04.770] [EVENT_BUS] Agent注册: teacher
+[13:53:04.770] [EVENT_BUS] Agent注册: student
+[13:53:04.770] [EVENT_BUS] Agent注册: monitor
+[13:53:04.770] [EVENT_BUS] Agent注册: knowledge_state
+[13:53:04.770] [EVENT_BUS] Agent注册: reflection
+[13:53:04.770] [EVENT_BUS] Agent注册: orchestrator
+[13:53:04.770] [TEACHER_AGENT] 状态更新: ready: True
+[13:53:04.770] [TEACHER_AGENT] 状态更新: icecot_enabled: True
+[13:53:04.770] [STUDENT_AGENT] 状态更新: ready: True
+[13:53:04.770] [STUDENT_AGENT] 状态更新: conversation_started: False
+[13:53:04.770] [MONITOR_AGENT] 状态更新: ready: True
+[13:53:04.770] [MONITOR_AGENT] 状态更新: review_count: 0
+[13:53:04.770] [KNOWLEDGE_STATE_AGENT] 状态更新: ready: True
+[13:53:04.770] [KNOWLEDGE_STATE_AGENT] 状态更新: records_analyzed: 0
+[13:53:04.779] [EVENT_BUS] 事件总线启动
+[13:53:04.779] [TEACHER_AGENT] 启动: Agent已启动
+[13:53:04.779] [STUDENT_AGENT] 启动: Agent已启动
+[13:53:04.779] [MONITOR_AGENT] 启动: Agent已启动
+[13:53:04.780] [KNOWLEDGE_STATE_AGENT] 启动: Agent已启动
+[13:53:04.780] [SYSTEM] 反思Agent启动状态: reflection - 已启动
+[13:53:04.780] [ORCHESTRATOR_AGENT_AGENT] 启动对话: 对话ID: 3e11846f-4556-4b5c-a953-49b3d4ae4db7
+[13:53:04.780] [EVENT_BUS] 消息发送: orchestrator -> student (task_request)
+[13:53:04.780] [STUDENT_AGENT] 收到消息: 类型: task_request, 发送者: orchestrator
+[13:53:04.780] [STUDENT_AGENT] 设置对话ID: ID: 3e11846f-4556-4b5c-a953-49b3d4ae4db7
+[13:53:04.780] [STUDENT_AGENT] 开始生成第一轮发言: 基于题目内容和历史记录生成初始问题
+[13:53:07.729] [STUDENT_AGENT] 初始发言生成: 长度: 206字符
+[13:53:07.729] [STUDENT_AGENT] 添加对话历史: student: 老师，我对这个题目有些困惑。题目问的是哪一种物质属于发热激活...
+[13:53:07.729] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:53:07.729] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[13:53:07.729] [STUDENT_AGENT] 第一轮发言: 内容: 老师，我对这个题目有些困惑。题目问的是哪一种物质属于发热激活物，但我对这些物质的具体作用和分类还不是...
+[13:53:07.729] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[13:53:07.729] [TEACHER_AGENT] 收到学生消息: 第1轮: 老师，我对这个题目有些困惑。题目问的是哪一种物质属于发热激活物，但我对这些物质的具体作用和分类还不是...
+[13:53:07.729] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第1轮分析
+[13:53:07.729] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[13:53:10.283] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 4,
+  "analysis": "学生在发言中表达了对题目的困惑，显示出对知识的渴望和求知欲，情绪强度较高（7分），因为他对具体概念的理解存在明显的障碍。同时，学生希望通过老师的帮助来澄清疑惑，这表明他对学习持积极态度，愿意寻求解答。自信程度较低（4分），因为他对相关知识的掌握不够充分，导致了困惑和不安。"
+}
+[13:53:10.283] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[13:53:13.391] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "知识缺失",
+  "need_level": "认知需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生对发热激活物的具体作用和分类感到困惑，显示出他在相关知识上存在缺失。他希望老师能详细解释这些物质的功能，尤其是它们在发热反应中的作用，表明他需要更深入的理解。同时，学生对概念之间的联系感到疑惑，期望通过例子来帮助理解，这进一步强调了他的认知需求和对详细讲解的偏好。"
+}
+[13:53:13.391] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[13:53:15.914] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "认知支持策略",
+  "secondary_strategy": "情感支持策略",
+  "approach": "通过详细讲解发热激活物的作用和分类，并结合具体例子进行解释，帮助学生理解相关概念，同时给予鼓励以增强其自信心",
+  "tone": "温暖和鼓励",
+  "key_points": [
+    "详细解释发热激活物的功能",
+    "结合实例帮助理解",
+    "鼓励学生提问以消除困惑"
+  ],
+  "rationale": "学生对概念理解存在明显障碍，需要详细讲解以填补知识缺失，同时情绪强度较高，需要情感支持来缓解困惑"
+}
+[13:53:15.920] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 认知支持策略
+[13:53:19.138] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 394字符
+[13:53:19.143] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 394字符
+[13:53:19.143] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[13:53:19.143] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[13:53:19.143] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第1轮
+[13:53:19.143] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 394字符
+[13:53:22.015] [MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复温和友善，关注学生情绪，使用了引导性问题促进思考，同时内容相关性强，教学方法科学合理。
+[13:53:22.015] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复温和友善，关注学生情绪，使用了引导性问题促进思考，同时内容相关性强，教学方法科学合理。"
+}
+[13:53:22.015] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[13:53:22.015] [MONITOR_AGENT] 状态更新: review_count: 1
+[13:53:22.015] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[13:53:22.015] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[13:53:22.015] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[13:53:22.015] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[13:53:22.015] [TEACHER_AGENT] 回复已发送: 第1轮，长度: 394字符
+[13:53:22.015] [STUDENT_AGENT] 收到教师回复: 第1轮: ...
+[13:53:22.015] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[13:53:23.584] [STUDENT_AGENT] 情绪分析: 第1轮, 新情绪: 困惑
+[13:53:23.584] [STUDENT_AGENT] 开始生成第1轮回复: 基于教师回复: ... 当前情绪: 困惑
+[13:53:25.925] [STUDENT_AGENT] 第1轮回复生成: 长度: 172字符, 新情绪: 困惑
+[13:53:25.925] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:53:25.925] [STUDENT_AGENT] 添加对话历史: student: 谢谢老师的回复！我还是有些不明白，您能否再具体一点，比如说干...
+[13:53:25.925] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第2轮
+[13:53:28.324] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然有疑问，要求更具体的解释和例子，表示对内容的理解不够深入。
+[13:53:28.325] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然有疑问，要求更具体的解释和例子，表示对内容的理解不够深入。",
+  "student_understanding": "学生对发热激活物的作用和机制仍有困惑，未能完全理解相关概念。",
+  "round_number": 2
+}
+[13:53:28.325] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然有疑问，要求更具体的解释和例子，表示对内容的理解不够深入。
+[13:53:28.325] [STUDENT_AGENT] 继续对话: 第2轮
+[13:53:28.325] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[13:53:28.325] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[13:53:28.325] [TEACHER_AGENT] 收到学生消息: 第2轮: 谢谢老师的回复！我还是有些不明白，您能否再具体一点，比如说干扰素和肿瘤坏死因子是如何在发热过程中发挥...
+[13:53:28.325] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第2轮分析
+[13:53:28.325] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[13:53:32.603] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 4,
+  "analysis": "学生在发言中表达了对学习内容的困惑，尤其是在理解干扰素和肿瘤坏死因子在发热过程中的作用方面。虽然他表现出一定的困惑，但同时也展现了积极的学习态度，愿意深入理解相关知识，并请求老师提供更多具体的例子来帮助理清概念。这表明学生对学习的重视和渴望，尽管目前的自信程度较低，可能是因为对知识的掌握不够全面。"
+}
+[13:53:32.604] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[13:53:35.660] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "理解错误",
+  "need_level": "认知需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生希望深入理解干扰素和肿瘤坏死因子在发热过程中的作用，表明他在概念理解上存在困难，尤其是对免疫因子的混淆。学生请求具体例子以帮助理清这些概念之间的关系，显示出他对详细讲解的偏好，并且对学习内容的理解有较高的认知需求。"
+}
+[13:53:35.660] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[13:53:38.359] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "启发式策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过提出问题引导学生思考干扰素和肿瘤坏死因子的作用，并提供具体例子进行概念解释",
+  "tone": "鼓励和支持",
+  "key_points": [
+    "引导学生思考相关概念",
+    "提供具体实例帮助理解"
+  ],
+  "rationale": "学生表现出困惑并请求具体例子，适合采用启发式策略引导其思考，同时结合认知支持策略进行概念解释，以帮助其理清知识点"
+}
+[13:53:38.360] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 启发式策略
+[13:53:46.766] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 387字符
+[13:53:46.766] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 387字符
+[13:53:46.766] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[13:53:46.766] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[13:53:46.766] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第2轮
+[13:53:46.766] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 387字符
+[13:53:49.266] [MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复体现了温和友善的语气，关注学生情绪，并且提供了针对性的引导和问题，帮助学生深入理解相关内容。
+[13:53:49.266] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复体现了温和友善的语气，关注学生情绪，并且提供了针对性的引导和问题，帮助学生深入理解相关内容。"
+}
+[13:53:49.266] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[13:53:49.266] [MONITOR_AGENT] 状态更新: review_count: 2
+[13:53:49.266] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[13:53:49.266] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[13:53:49.266] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[13:53:49.266] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[13:53:49.266] [TEACHER_AGENT] 回复已发送: 第2轮，长度: 387字符
+[13:53:49.266] [STUDENT_AGENT] 收到教师回复: 第2轮: ...
+[13:53:49.266] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[13:53:50.684] [STUDENT_AGENT] 情绪分析: 第2轮, 新情绪: 困惑
+[13:53:50.684] [STUDENT_AGENT] 开始生成第2轮回复: 基于教师回复: ... 当前情绪: 困惑
+[13:53:53.526] [STUDENT_AGENT] 第2轮回复生成: 长度: 217字符, 新情绪: 困惑
+[13:53:53.526] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:53:53.526] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您的耐心回复！不过我还是觉得有些困惑，特别是在干扰...
+[13:53:53.526] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第3轮
+[13:53:56.476] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然感到困惑，并提出了新的问题，特别是在干扰素和肿瘤坏死因子的具体机制及其相互作用方面。
+[13:53:56.476] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然感到困惑，并提出了新的问题，特别是在干扰素和肿瘤坏死因子的具体机制及其相互作用方面。",
+  "student_understanding": "学生对干扰素和肿瘤坏死因子在发热中的作用有一定了解，但仍然存在困惑，特别是在机制和相互关系方面。",
+  "round_number": 3
+}
+[13:53:56.476] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然感到困惑，并提出了新的问题，特别是在干扰素和肿瘤坏死因子的具体机制及其相互作用方面。
+[13:53:56.476] [STUDENT_AGENT] 继续对话: 第3轮
+[13:53:56.476] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[13:53:56.476] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[13:53:56.476] [TEACHER_AGENT] 收到学生消息: 第3轮: 老师，感谢您的耐心回复！不过我还是觉得有些困惑，特别是在干扰素和肿瘤坏死因子如何具体引发发热这部分。...
+[13:53:56.476] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第3轮分析
+[13:53:56.476] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[13:53:59.167] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 4,
+  "analysis": "学生表达了对干扰素和肿瘤坏死因子引发发热机制的困惑，显示出他对该主题的理解存在障碍，情绪强度较高（7分），表明困惑感较强。同时，学生对学习仍持积极态度，愿意寻求更多的例子和详细解释以加深理解，显示出他对知识的渴望和主动性。自信程度较低（4分），反映出他对自己理解能力的不确定性。"
+}
+[13:53:59.167] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[13:54:02.164] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "理解错误",
+  "need_level": "认知需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生对干扰素和肿瘤坏死因子如何引发发热的机制感到困惑，表明他在理解这一概念时存在错误或不足。同时，他希望通过更多的例子来加深对免疫因子之间联系的理解，显示出他对知识的渴望。情绪状态显示出他对学习持积极态度，但自信程度较低，说明他需要更多的认知支持和详细的讲解来帮助他克服理解上的困难。"
+}
+[13:54:02.164] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[13:54:05.800] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "认知支持策略",
+  "secondary_strategy": "情感支持策略",
+  "approach": "通过详细解释干扰素和肿瘤坏死因子引发发热机制，并结合实际例子进行讲解",
+  "tone": "鼓励和支持的语调",
+  "key_points": [
+    "详细解释概念",
+    "结合实际例子",
+    "缓解学生的困惑"
+  ],
+  "rationale": "学生对概念存在困惑且自信程度较低，因此需要认知支持来帮助他理解，同时情感支持可以增强他的信心"
+}
+[13:54:05.800] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 认知支持策略
+[13:54:09.138] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 322字符
+[13:54:09.138] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 322字符
+[13:54:09.138] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[13:54:09.138] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[13:54:09.138] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第3轮
+[13:54:09.138] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 322字符
+[13:54:23.237] [MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复展现了良好的情感支持和专业知识，能够有效引导学生思考并深入理解复杂的生物学概念。
+[13:54:23.237] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复展现了良好的情感支持和专业知识，能够有效引导学生思考并深入理解复杂的生物学概念。"
+}
+[13:54:23.237] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[13:54:23.237] [MONITOR_AGENT] 状态更新: review_count: 3
+[13:54:23.237] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[13:54:23.237] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[13:54:23.237] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[13:54:23.237] [TEACHER_AGENT] 回复已发送: 第3轮，长度: 322字符
+[13:54:23.237] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[13:54:23.237] [STUDENT_AGENT] 收到教师回复: 第3轮: ...
+[13:54:23.237] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[13:54:24.665] [STUDENT_AGENT] 情绪分析: 第3轮, 新情绪: 困惑
+[13:54:24.665] [STUDENT_AGENT] 开始生成第3轮回复: 基于教师回复: ... 当前情绪: 困惑
+[13:54:27.791] [STUDENT_AGENT] 第3轮回复生成: 长度: 200字符, 新情绪: 困惑
+[13:54:27.791] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:54:27.791] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您的耐心和详细的解释！不过我还是有些困惑，特别是在...
+[13:54:27.791] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第4轮
+[13:54:29.766] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然有困惑，提出了新的问题，特别是关于干扰素和肿瘤坏死因子的作用机制以及免疫因子之间的关系。
+[13:54:29.767] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然有困惑，提出了新的问题，特别是关于干扰素和肿瘤坏死因子的作用机制以及免疫因子之间的关系。",
+  "student_understanding": "学生对干扰素和肿瘤坏死因子在发热中的作用仍感到困惑，并希望获得更多具体的例子和解释。",
+  "round_number": 4
+}
+[13:54:29.767] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然有困惑，提出了新的问题，特别是关于干扰素和肿瘤坏死因子的作用机制以及免疫因子之间的关系。
+[13:54:29.767] [STUDENT_AGENT] 继续对话: 第4轮
+[13:54:29.767] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[13:54:29.767] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[13:54:29.767] [TEACHER_AGENT] 收到学生消息: 第4轮: 老师，感谢您的耐心和详细的解释！不过我还是有些困惑，特别是在干扰素和肿瘤坏死因子具体是如何在发热中发...
+[13:54:29.767] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第4轮分析
+[13:54:29.767] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[13:54:32.770] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 6,
+  "learning_attitude": "积极",
+  "confidence_level": 5,
+  "analysis": "学生表达了对某些生物学概念的困惑，尤其是关于干扰素和肿瘤坏死因子在发热中的作用。他们对知识的渴望和感谢老师的耐心说明了他们的积极学习态度。然而，困惑的情绪表明他们在理解这些复杂概念时感到了一定的压力，情绪强度为6分。同时，学生希望通过具体的例子来加深理解，显示出他们在学习过程中的主动性和对知识的追求，自信程度为5分，表明他们在某些方面有信心，但仍然需要更多的指导和支持。"
+}
+[13:54:32.770] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[13:54:35.828] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "理解错误",
+  "need_level": "认知需求",
+  "learning_preference": "示例演示",
+  "analysis": "学生希望更清楚地了解干扰素和肿瘤坏死因子在发热中的生化作用，表明他们的学习目标是理解这些生物学概念。由于他们对这些概念感到困惑，显示出理解错误的困难类型。学生的情绪状态表明他们有较强的认知需求，希望通过具体的信号传导机制和免疫因子之间的关系示例来加深理解，因此他们的学习偏好为示例演示。"
+}
+[13:54:35.829] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[13:54:38.372] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "启发式策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过问题引导学生思考干扰素和肿瘤坏死因子在发热中的作用，并结合具体的生化信号传导机制进行示例演示",
+  "tone": "鼓励和支持",
+  "key_points": [
+    "引导学生提出问题",
+    "提供具体的生化例子"
+  ],
+  "rationale": "学生感到困惑，需要通过启发式引导来帮助他们理解复杂概念，同时结合认知支持策略提供具体示例以加深理解"
+}
+[13:54:38.372] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 启发式策略
+[13:54:42.875] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 394字符
+[13:54:42.883] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 394字符
+[13:54:42.883] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[13:54:42.883] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[13:54:42.883] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第4轮
+[13:54:42.883] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 394字符
+[13:54:45.944] [MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复展现了良好的情感支持和专业知识，鼓励学生思考并参与讨论，营造了积极的学习氛围。
+[13:54:45.944] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复展现了良好的情感支持和专业知识，鼓励学生思考并参与讨论，营造了积极的学习氛围。"
+}
+[13:54:45.944] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[13:54:45.944] [MONITOR_AGENT] 状态更新: review_count: 4
+[13:54:45.945] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[13:54:45.945] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[13:54:45.945] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[13:54:45.945] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[13:54:45.945] [TEACHER_AGENT] 回复已发送: 第4轮，长度: 394字符
+[13:54:45.945] [STUDENT_AGENT] 收到教师回复: 第4轮: ...
+[13:54:45.945] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[13:54:47.460] [STUDENT_AGENT] 情绪分析: 第4轮, 新情绪: 困惑
+[13:54:47.460] [STUDENT_AGENT] 开始生成第4轮回复: 基于教师回复: ... 当前情绪: 困惑
+[13:54:50.849] [STUDENT_AGENT] 第4轮回复生成: 长度: 223字符, 新情绪: 困惑
+[13:54:50.849] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:54:50.849] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您刚才的解释！我觉得有些地方还是不太明白，特别是干...
+[13:54:50.849] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第5轮
+[13:54:55.899] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然有疑问，特别是关于干扰素和肿瘤坏死因子的信号传导机制，以及免疫因子之间的关系，希望得到更多的解释和具体例子。
+[13:54:55.900] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然有疑问，特别是关于干扰素和肿瘤坏死因子的信号传导机制，以及免疫因子之间的关系，希望得到更多的解释和具体例子。",
+  "student_understanding": "学生对干扰素和肿瘤坏死因子在发热过程中的作用理解不够清晰，仍需进一步的指导和例子来加深理解。",
+  "round_number": 5
+}
+[13:54:55.900] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然有疑问，特别是关于干扰素和肿瘤坏死因子的信号传导机制，以及免疫因子之间的关系，希望得到更多的解释和具体例子。
+[13:54:55.900] [STUDENT_AGENT] 继续对话: 第5轮
+[13:54:55.900] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[13:54:55.900] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[13:54:55.900] [TEACHER_AGENT] 收到学生消息: 第5轮: 老师，感谢您刚才的解释！我觉得有些地方还是不太明白，特别是干扰素和肿瘤坏死因子在发热过程中具体的信号...
+[13:54:55.900] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第5轮分析
+[13:54:55.900] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[13:54:58.965] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 6,
+  "learning_attitude": "积极",
+  "confidence_level": 5,
+  "analysis": "学生表达了对某些概念的困惑，尤其是干扰素和肿瘤坏死因子在发热过程中的信号传导机制，显示出他对学习内容的理解存在一定障碍。尽管有困惑，但学生的态度依然积极，主动寻求进一步的解释和例子，表现出对学习的兴趣和渴望。自信程度中等，表明他对自己的理解能力有一定信心，但仍希望通过老师的帮助来加深理解。"
+}
+[13:54:58.965] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[13:55:02.037] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "理解错误",
+  "need_level": "认知需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生对干扰素和肿瘤坏死因子在发热过程中的信号传导机制感到困惑，显示出他在理解这些概念时存在困难。他希望通过具体的例子和图示来加深对免疫因子之间关系的理解，表明他有强烈的认知需求。同时，学生的积极态度和主动提问显示出他对学习的渴望，倾向于通过详细讲解来解决自己的疑惑。"
+}
+[13:55:02.037] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[13:55:04.298] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "认知支持策略",
+  "secondary_strategy": "情感支持策略",
+  "approach": "通过详细讲解干扰素和肿瘤坏死因子在发热过程中的信号传导机制，并结合具体例子和图示进行解释",
+  "tone": "鼓励和耐心",
+  "key_points": [
+    "详细解释信号传导机制",
+    "使用图示和例子帮助理解"
+  ],
+  "rationale": "学生对概念感到困惑，需要通过详细讲解来加深理解，同时积极的学习态度需要情感支持来增强信心"
+}
+[13:55:04.298] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 认知支持策略
+[13:55:07.891] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 408字符
+[13:55:07.891] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 408字符
+[13:55:07.891] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[13:55:07.891] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[13:55:07.891] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第5轮
+[13:55:07.891] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 408字符
+[13:55:11.133] [MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复展现了温和友善的语气，积极支持学生的学习，同时内容准确且教学方法科学合理，能够引导学生深入思考。
+[13:55:11.134] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复展现了温和友善的语气，积极支持学生的学习，同时内容准确且教学方法科学合理，能够引导学生深入思考。",
+  "feedback": "可以在内容准确性上进一步加强，提供一些具体的生化途径或信号传导机制的例子，以增强学生的理解。"
+}
+[13:55:11.134] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[13:55:11.134] [MONITOR_AGENT] 状态更新: review_count: 5
+[13:55:11.134] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[13:55:11.134] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[13:55:11.134] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[13:55:11.134] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[13:55:11.134] [TEACHER_AGENT] 回复已发送: 第5轮，长度: 408字符
+[13:55:11.134] [STUDENT_AGENT] 收到教师回复: 第5轮: ...
+[13:55:11.134] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[13:55:13.001] [STUDENT_AGENT] 情绪分析: 第5轮, 新情绪: 困惑
+[13:55:13.002] [STUDENT_AGENT] 开始生成第5轮回复: 基于教师回复: ... 当前情绪: 困惑
+[13:55:15.252] [STUDENT_AGENT] 第5轮回复生成: 长度: 204字符, 新情绪: 困惑
+[13:55:15.252] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:55:15.252] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您的耐心回复！我理解您提到的一些机制，但还是有些细...
+[13:55:15.252] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第6轮
+[13:55:17.370] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然感到困惑，并提出了新的问题和请求，表示需要进一步的指导。
+[13:55:17.370] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然感到困惑，并提出了新的问题和请求，表示需要进一步的指导。",
+  "student_understanding": "学生对干扰素和肿瘤坏死因子的机制有部分理解，但仍有细节不清楚，特别是在信号传导和免疫因子相互作用方面。",
+  "round_number": 6
+}
+[13:55:17.370] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然感到困惑，并提出了新的问题和请求，表示需要进一步的指导。
+[13:55:17.370] [STUDENT_AGENT] 继续对话: 第6轮
+[13:55:17.370] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[13:55:17.370] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[13:55:17.370] [TEACHER_AGENT] 收到学生消息: 第6轮: 老师，感谢您的耐心回复！我理解您提到的一些机制，但还是有些细节让我感到困惑。干扰素和肿瘤坏死因子的具...
+[13:55:17.370] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第6轮分析
+[13:55:17.370] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[13:55:20.650] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 6,
+  "learning_attitude": "积极",
+  "confidence_level": 4,
+  "analysis": "学生在发言中表达了对某些细节的困惑，尤其是关于干扰素和肿瘤坏死因子的信号传导过程，以及它们对体温调节的影响。这表明学生在理解这些复杂概念时感到一定的困难，情绪上表现出困惑。情绪强度为6，说明这种困惑感较为明显。同时，学生对学习持积极态度，感谢老师的耐心回复，并期待进一步的指导，显示出他们希望通过更多的案例和图示来加深理解。自信程度为4，表明学生对掌握这些内容的信心不足，但仍然愿意寻求帮助。"
+}
+[13:55:20.650] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[13:55:23.350] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "掌握方法",
+  "difficulty_type": "理解错误",
+  "need_level": "认知需求",
+  "learning_preference": "示例演示",
+  "analysis": "学生对干扰素和肿瘤坏死因子的信号传导过程及其对体温调节的影响感到困惑，表明他们在理解这些复杂概念时存在理解错误。学生希望通过具体案例和图示来加深对免疫因子相互作用的理解，显示出他们的认知需求。学生的学习偏好倾向于示例演示，以便更好地掌握相关知识。"
+}
+[13:55:23.350] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 掌握方法
+[13:55:25.595] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "启发式策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过问题引导学生思考干扰素和肿瘤坏死因子的信号传导过程，并结合具体案例和图示进行解释",
+  "tone": "鼓励和耐心",
+  "key_points": [
+    "引导学生提出问题",
+    "使用图示和案例加深理解"
+  ],
+  "rationale": "学生表现出困惑且希望通过具体示例和图示来加深理解，因此采用启发式策略引导思考，同时结合认知支持策略提供概念解释，能够有效帮助学生克服理解错误"
+}
+[13:55:25.595] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 启发式策略
+[13:55:29.969] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 386字符
+[13:55:29.969] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 386字符
+[13:55:29.969] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[13:55:29.969] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[13:55:29.969] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第6轮
+[13:55:29.969] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 386字符
+[13:55:44.786] [MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复展现了温和友善的语气，关注学生情绪并给予支持，同时内容准确且教学方法科学合理，表达清晰易懂，符合学生认知水平。
+[13:55:44.786] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 9,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复展现了温和友善的语气，关注学生情绪并给予支持，同时内容准确且教学方法科学合理，表达清晰易懂，符合学生认知水平。"
+}
+[13:55:44.787] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[13:55:44.787] [MONITOR_AGENT] 状态更新: review_count: 6
+[13:55:44.787] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[13:55:44.787] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[13:55:44.787] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[13:55:44.787] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[13:55:44.787] [TEACHER_AGENT] 回复已发送: 第6轮，长度: 386字符
+[13:55:44.787] [STUDENT_AGENT] 收到教师回复: 第6轮: ...
+[13:55:44.787] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[13:55:46.555] [STUDENT_AGENT] 情绪分析: 第6轮, 新情绪: 困惑
+[13:55:46.555] [STUDENT_AGENT] 开始生成第6轮回复: 基于教师回复: ... 当前情绪: 困惑
+[13:55:49.149] [STUDENT_AGENT] 第6轮回复生成: 长度: 196字符, 新情绪: 困惑
+[13:55:49.149] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:55:49.149] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您的回复！我还是有些不确定，特别是在干扰素和肿瘤坏...
+[13:55:49.149] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第7轮
+[13:55:49.149] [CONVERSATION_ANALYZER_AGENT] 对话结束: 达到最大轮次7
+[13:55:49.149] [STUDENT_AGENT] 对话分析结果: should_end: True, reason: 达到最大对话轮次7
+[13:55:49.149] [STUDENT_AGENT] 发送对话结束消息: 对话ID: 3e11846f-4556-4b5c-a953-49b3d4ae4db7
+[13:55:49.149] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[13:55:49.149] [ORCHESTRATOR_AGENT_AGENT] 处理对话结束: 对话ID: 3e11846f-4556-4b5c-a953-49b3d4ae4db7
+[13:55:49.149] [ORCHESTRATOR_AGENT_AGENT] 对话结束: 总轮数: 7, 原因: 达到最大对话轮次7
+[13:55:49.149] [EVENT_BUS] 消息发送: orchestrator -> reflection (reflection_request)
+[13:55:49.149] [ORCHESTRATOR_AGENT_AGENT] 反思请求已发送: 对话ID: 3e11846f-4556-4b5c-a953-49b3d4ae4db7
+[13:55:50.822] [SYSTEM] 对话正常完成

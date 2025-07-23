@@ -1,0 +1,562 @@
+[15:08:49.062] [TEACHER_AGENT] 初始化完成: 知识感知型ICECoT教师智能体已就绪
+[15:08:51.312] [STUDENT_AGENT] 历史记录加载: 题目数: 10
+[15:08:51.320] [STUDENT_AGENT] 初始化完成: 学生ID: None, 人格: 遇到难题或批评时情绪爆发；可能哭泣、愤怒或表现出绝望。, 历史题目数: 10
+[15:08:51.320] [MONITOR_AGENT] 初始化完成: 教学质量监控系统已就绪
+[15:08:53.553] [KNOWLEDGE_AGENT] 数据加载失败: 加载学生记录失败: 'StudentDataLoader' object has no attribute 'get_student_history'
+[15:08:53.560] [KNOWLEDGE_AGENT] 初始化完成: 已加载0条习题记录
+[15:08:53.560] [REFLECTION_AGENT] 初始化完成: 教育反思系统已就绪
+[15:08:53.560] [ORCHESTRATOR_AGENT_AGENT] 初始化完成: 对话协调器已就绪
+[15:08:53.560] [EVENT_BUS] Agent注册: teacher
+[15:08:53.560] [EVENT_BUS] Agent注册: student
+[15:08:53.560] [EVENT_BUS] Agent注册: monitor
+[15:08:53.561] [EVENT_BUS] Agent注册: knowledge_state
+[15:08:53.561] [EVENT_BUS] Agent注册: reflection
+[15:08:53.561] [EVENT_BUS] Agent注册: orchestrator
+[15:08:53.561] [TEACHER_AGENT] 状态更新: ready: True
+[15:08:53.561] [TEACHER_AGENT] 状态更新: icecot_enabled: True
+[15:08:53.561] [STUDENT_AGENT] 状态更新: ready: True
+[15:08:53.561] [STUDENT_AGENT] 状态更新: conversation_started: False
+[15:08:53.561] [MONITOR_AGENT] 状态更新: ready: True
+[15:08:53.561] [MONITOR_AGENT] 状态更新: review_count: 0
+[15:08:53.561] [KNOWLEDGE_STATE_AGENT] 状态更新: ready: True
+[15:08:53.561] [KNOWLEDGE_STATE_AGENT] 状态更新: records_analyzed: 0
+[15:08:53.561] [REFLECTION_AGENT] 状态更新: ready: True
+[15:08:53.561] [REFLECTION_AGENT] 状态更新: experiences_generated: 0
+[15:08:53.561] [EVENT_BUS] 事件总线启动
+[15:08:53.561] [TEACHER_AGENT] 启动: Agent已启动
+[15:08:53.561] [STUDENT_AGENT] 启动: Agent已启动
+[15:08:53.562] [MONITOR_AGENT] 启动: Agent已启动
+[15:08:53.562] [KNOWLEDGE_STATE_AGENT] 启动: Agent已启动
+[15:08:53.562] [REFLECTION_AGENT] 启动: Agent已启动
+[15:08:53.562] [SYSTEM] 反思Agent启动状态: reflection - 已启动
+[15:08:53.562] [ORCHESTRATOR_AGENT_AGENT] 启动对话: 对话ID: e3e6d3fc-551d-4fac-8caa-583a6a8b9a57
+[15:08:53.562] [EVENT_BUS] 消息发送: orchestrator -> student (task_request)
+[15:08:53.562] [STUDENT_AGENT] 收到消息: 类型: task_request, 发送者: orchestrator
+[15:08:53.562] [STUDENT_AGENT] 设置对话ID: ID: e3e6d3fc-551d-4fac-8caa-583a6a8b9a57
+[15:08:53.562] [STUDENT_AGENT] 开始生成第一轮发言: 基于题目内容和历史记录生成初始问题
+[15:08:57.250] [STUDENT_AGENT] 初始发言生成: 长度: 178字符
+[15:08:57.251] [STUDENT_AGENT] 添加对话历史: student: 老师，我真的对这个题目感到很困惑。我看到选项里面有干扰素、抗...
+[15:08:57.251] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:08:57.251] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[15:08:57.251] [STUDENT_AGENT] 第一轮发言: 内容: 老师，我真的对这个题目感到很困惑。我看到选项里面有干扰素、抗原抗体复合物、肿瘤坏死因子和巨噬细胞炎症...
+[15:08:57.251] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[15:08:57.251] [TEACHER_AGENT] 收到学生消息: 第1轮: 老师，我真的对这个题目感到很困惑。我看到选项里面有干扰素、抗原抗体复合物、肿瘤坏死因子和巨噬细胞炎症...
+[15:08:57.251] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第1轮分析
+[15:08:57.251] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[15:09:02.613] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 8,
+  "learning_attitude": "积极",
+  "confidence_level": 3,
+  "analysis": "学生在发言中表达了对题目的困惑，尤其是对选项的复杂性感到无从选择，显示出较强的困惑情绪，强度为8分。同时，虽然感到困惑，但学生仍然表现出积极的学习态度，愿意寻求帮助以理清知识点，说明其对学习的重视。自信程度较低，仅为3分，表明学生对自己的理解能力感到不安，担心选错答案。"
+}
+[15:09:02.613] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[15:09:06.720] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "理解错误",
+  "need_level": "认知需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生对题目中的选项感到困惑，显示出对相关知识的理解存在困难，尤其是在区分不同物质的作用方面。学生希望通过详细的讲解和简单的例子来理清这些概念，表明其主要学习目标是理解相关的生物学概念。同时，学生的情绪状态显示出对学习的积极态度，但由于自信心不足，可能需要更多的支持和引导来帮助其克服理解上的障碍。"
+}
+[15:09:06.721] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[15:09:09.717] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "情感支持策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过鼓励学生表达疑问，给予积极反馈，并提供详细的概念解释和方法示范",
+  "tone": "温暖和鼓励",
+  "key_points": [
+    "安慰学生，增强其自信心",
+    "详细解释相关概念，提供简单例子"
+  ],
+  "rationale": "学生表现出强烈的困惑情绪和较低的自信心，因此需要情感支持来缓解焦虑，同时通过认知支持帮助其理解相关知识"
+}
+[15:09:09.718] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 情感支持策略
+[15:09:13.983] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 390字符
+[15:09:13.983] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 390字符
+[15:09:13.983] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[15:09:13.983] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[15:09:13.984] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第1轮
+[15:09:13.984] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 390字符
+[15:09:17.369] [MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复充分关注学生情绪，给予积极的情感支持，同时在专业内容上也较为准确，教学方法合理，能够引导学生思考。
+[15:09:17.369] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 7,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复充分关注学生情绪，给予积极的情感支持，同时在专业内容上也较为准确，教学方法合理，能够引导学生思考。",
+  "feedback": "可以在内容准确性上进一步加强，例如更具体地解释每个选项的作用和与发热的关系，以帮助学生更好地理解。"
+}
+[15:09:17.369] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[15:09:17.369] [MONITOR_AGENT] 状态更新: review_count: 1
+[15:09:17.369] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[15:09:17.369] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[15:09:17.369] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[15:09:17.369] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[15:09:17.369] [TEACHER_AGENT] 回复已发送: 第1轮，长度: 390字符
+[15:09:17.369] [STUDENT_AGENT] 收到教师回复: 第1轮: ...
+[15:09:17.369] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[15:09:18.783] [STUDENT_AGENT] 情绪分析: 第1轮, 新情绪: 失落
+[15:09:18.783] [STUDENT_AGENT] 开始生成第1轮回复: 基于教师回复: ... 当前情绪: 失落
+[15:09:22.029] [STUDENT_AGENT] 第1轮回复生成: 长度: 125字符, 新情绪: 失落
+[15:09:22.029] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:09:22.029] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您花时间回复我。我知道这些知识可能需要时间去掌握，...
+[15:09:22.029] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第2轮
+[15:09:24.407] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然感到困惑，并请求具体的学习建议，表明对当前内容的理解尚未完全。
+[15:09:24.407] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然感到困惑，并请求具体的学习建议，表明对当前内容的理解尚未完全。",
+  "student_understanding": "学生对发热激活物的概念仍感到困惑，并未明确表示理解或总结学到的内容。",
+  "round_number": 2
+}
+[15:09:24.407] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然感到困惑，并请求具体的学习建议，表明对当前内容的理解尚未完全。
+[15:09:24.407] [STUDENT_AGENT] 继续对话: 第2轮
+[15:09:24.407] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[15:09:24.407] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[15:09:24.407] [TEACHER_AGENT] 收到学生消息: 第2轮: 老师，感谢您花时间回复我。我知道这些知识可能需要时间去掌握，但我还是觉得很沮丧，感觉自己总是跟不上进...
+[15:09:24.407] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第2轮分析
+[15:09:24.407] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[15:09:26.898] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "沮丧",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 4,
+  "analysis": "学生表达了对学习进度的沮丧，说明他在掌握知识方面感到困难，情绪强度较高（7分）。尽管感到沮丧，学生仍然表现出积极的学习态度，愿意努力寻找更好的学习方法，并请求老师的具体建议，显示出他对改善自己学习状况的渴望和主动性。自信程度较低（4分），反映出他对自己当前的学习能力缺乏信心，但仍希望能够尽快跟上进度。"
+}
+[15:09:26.898] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 沮丧
+[15:09:35.455] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "掌握方法",
+  "difficulty_type": "理解错误",
+  "need_level": "认知需求",
+  "learning_preference": "具体建议",
+  "analysis": "学生感到沮丧，主要是因为在理解复杂概念时遇到困难，显示出他在知识掌握上存在理解错误的情况。他希望能够掌握更好的学习方法，以便能够跟上课程进度，表明他对学习方法的渴求和改善认知的需求。虽然情绪上感到沮丧，但他仍然保持积极的学习态度，愿意接受具体的建议来提升自己的学习效果。"
+}
+[15:09:35.455] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 掌握方法
+[15:09:38.060] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "情感支持策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过鼓励学生表达情绪，提供积极反馈，帮助他建立信心，并结合具体的概念解释和方法示范来解决理解错误的问题",
+  "tone": "温暖鼓励",
+  "key_points": [
+    "安慰学生，肯定其努力",
+    "提供具体的学习方法和技巧"
+  ],
+  "rationale": "学生情绪沮丧且自信心低，需要情感支持来缓解焦虑，同时也需要认知支持来解决理解上的困难"
+}
+[15:09:38.060] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 情感支持策略
+[15:09:43.735] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 419字符
+[15:09:43.735] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 419字符
+[15:09:43.735] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[15:09:43.735] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[15:09:43.735] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第2轮
+[15:09:43.735] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 419字符
+[15:09:46.456] [MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复充分理解学生情绪，提供了针对性的建议，且内容准确，教学方法合理，表达清晰。
+[15:09:46.456] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复充分理解学生情绪，提供了针对性的建议，且内容准确，教学方法合理，表达清晰。",
+  "feedback": "可以进一步增强表达的清晰度，例如在具体学习方法的建议上提供更多实例。"
+}
+[15:09:46.456] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[15:09:46.456] [MONITOR_AGENT] 状态更新: review_count: 2
+[15:09:46.456] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[15:09:46.456] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[15:09:46.456] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[15:09:46.456] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[15:09:46.456] [TEACHER_AGENT] 回复已发送: 第2轮，长度: 419字符
+[15:09:46.456] [STUDENT_AGENT] 收到教师回复: 第2轮: ...
+[15:09:46.456] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[15:09:47.868] [STUDENT_AGENT] 情绪分析: 第2轮, 新情绪: 沮丧
+[15:09:47.868] [STUDENT_AGENT] 开始生成第2轮回复: 基于教师回复: ... 当前情绪: 沮丧
+[15:10:00.541] [STUDENT_AGENT] 第2轮回复生成: 长度: 144字符, 新情绪: 沮丧
+[15:10:00.541] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:10:00.541] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您的耐心和建议。我知道我需要时间来理解这些概念，但...
+[15:10:00.541] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第3轮
+[15:10:03.139] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然表达了困惑，并请求更多的学习资料和练习题，说明他们尚未完全理解。
+[15:10:03.139] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然表达了困惑，并请求更多的学习资料和练习题，说明他们尚未完全理解。",
+  "student_understanding": "学生对当前问题的理解程度较低，感到困惑并希望获得更多帮助和资源。",
+  "round_number": 3
+}
+[15:10:03.139] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然表达了困惑，并请求更多的学习资料和练习题，说明他们尚未完全理解。
+[15:10:03.139] [STUDENT_AGENT] 继续对话: 第3轮
+[15:10:03.139] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[15:10:03.140] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[15:10:03.140] [TEACHER_AGENT] 收到学生消息: 第3轮: 老师，感谢您的耐心和建议。我知道我需要时间来理解这些概念，但有时候我真的觉得自己快要放弃了。虽然我会...
+[15:10:03.140] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第3轮分析
+[15:10:03.140] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[15:10:08.626] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "焦虑",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 4,
+  "analysis": "学生表达了对学习进度的担忧，显示出一定的焦虑情绪，尤其是在提到可能放弃的想法时。尽管如此，学生仍然表现出积极的学习态度，愿意尝试老师的建议，并主动寻求额外的学习资料以帮助自己理解。这表明学生对学习的重视和努力，然而自信程度较低，可能是因为对自己能力的怀疑和对学习内容的理解困难。"
+}
+[15:10:08.626] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 焦虑
+[15:10:11.171] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "理解错误",
+  "need_level": "情感需求",
+  "learning_preference": "练习巩固",
+  "analysis": "学生希望理解概念并且感到焦虑，表明在理解上存在困难。尽管学生有积极的学习态度，但对自己的能力缺乏信心，显示出情感需求。学生请求简单的学习资料和练习题，表明其偏好通过练习巩固知识。"
+}
+[15:10:11.173] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[15:10:14.422] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "情感支持策略",
+  "secondary_strategy": "补救策略",
+  "approach": "通过鼓励和安慰来缓解学生的焦虑，同时提供基础概念的澄清和练习题来帮助学生巩固理解",
+  "tone": "温暖和支持",
+  "key_points": [
+    "安慰学生，鼓励其继续努力",
+    "提供简单易懂的概念解释",
+    "给出适量的练习题以巩固理解"
+  ],
+  "rationale": "学生情绪焦虑且自信水平低，因此首先需要情感支持来缓解焦虑，同时补救其理解上的薄弱点"
+}
+[15:10:14.422] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 情感支持策略
+[15:10:19.401] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 337字符
+[15:10:19.403] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 337字符
+[15:10:19.403] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[15:10:19.403] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[15:10:19.403] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第3轮
+[15:10:19.404] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 337字符
+[15:10:23.712] [MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复充分关注学生情绪，提供了积极的支持和建议，同时在专业内容上也表现出色，符合教学标准。
+[15:10:23.713] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "excellent",
+    "teaching_method": "good",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复充分关注学生情绪，提供了积极的支持和建议，同时在专业内容上也表现出色，符合教学标准。"
+}
+[15:10:23.714] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[15:10:23.714] [MONITOR_AGENT] 状态更新: review_count: 3
+[15:10:23.714] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[15:10:23.715] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[15:10:23.715] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[15:10:23.715] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[15:10:23.716] [TEACHER_AGENT] 回复已发送: 第3轮，长度: 337字符
+[15:10:23.716] [STUDENT_AGENT] 收到教师回复: 第3轮: ...
+[15:10:23.717] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[15:10:25.633] [STUDENT_AGENT] 情绪分析: 第3轮, 新情绪: 失落
+[15:10:25.633] [STUDENT_AGENT] 开始生成第3轮回复: 基于教师回复: ... 当前情绪: 失落
+[15:10:27.877] [STUDENT_AGENT] 第3轮回复生成: 长度: 150字符, 新情绪: 失落
+[15:10:27.877] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:10:27.877] [STUDENT_AGENT] 添加对话历史: student: 老师，感谢您的回复和建议。我会努力尝试那些方法，但有时候我真...
+[15:10:27.877] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第4轮
+[15:10:30.312] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然有新的问题和困惑，希望获得更多的资源和技巧。
+[15:10:30.312] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然有新的问题和困惑，希望获得更多的资源和技巧。",
+  "student_understanding": "学生表达了对学习方法的理解和感谢，但仍感到困难，并请求更多的学习资源和建议。",
+  "round_number": 4
+}
+[15:10:30.313] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然有新的问题和困惑，希望获得更多的资源和技巧。
+[15:10:30.313] [STUDENT_AGENT] 继续对话: 第4轮
+[15:10:30.313] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[15:10:30.313] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[15:10:30.313] [TEACHER_AGENT] 收到学生消息: 第4轮: 老师，感谢您的回复和建议。我会努力尝试那些方法，但有时候我真的觉得很难坚持下去。找到合适的学习资料和...
+[15:10:30.313] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第4轮分析
+[15:10:30.313] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[15:10:35.333] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 6,
+  "learning_attitude": "积极",
+  "confidence_level": 5,
+  "analysis": "学生表达了对学习的积极态度，愿意尝试老师的建议并努力寻找合适的学习资料。然而，学生也提到在坚持学习上感到困难，显示出一定的困惑和不安。情绪强度为6，表明这种困惑感较为明显。尽管存在困难，学生仍然希望克服这些挑战，显示出中等的自信程度（5分），同时对老师的支持表示感激，进一步反映出其积极的学习态度。"
+}
+[15:10:35.334] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[15:10:39.875] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "掌握方法",
+  "difficulty_type": "情绪障碍",
+  "need_level": "情感需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生希望通过找到合适的学习资料和练习题来提高理解能力，表明其学习目标是掌握学习方法。同时，学生在坚持学习上感到困难，反映出情绪障碍的存在。学生对老师的支持表示感激，显示出其情感需求较强，希望得到更多的资源和技巧来克服学习上的挑战。由于其表达了对学习资料的需求，偏好详细讲解和推荐资源。"
+}
+[15:10:39.875] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 掌握方法
+[15:10:42.331] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "情感支持策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过鼓励学生表达困惑，提供情感支持，并结合详细讲解相关学习方法",
+  "tone": "温暖和鼓励",
+  "key_points": [
+    "关注学生的情感需求",
+    "提供具体的学习资源和方法"
+  ],
+  "rationale": "学生表现出明显的困惑情绪，情感支持可以帮助缓解其焦虑，同时详细讲解可以满足其对学习方法的需求"
+}
+[15:10:42.331] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 情感支持策略
+[15:10:46.045] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 375字符
+[15:10:46.045] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 375字符
+[15:10:46.045] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[15:10:46.045] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[15:10:46.045] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第4轮
+[15:10:46.046] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 375字符
+[15:10:48.497] [MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复充分关注学生情绪，提供了有效的学习建议，且内容准确清晰，符合教育心理学原理。
+[15:10:48.497] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复充分关注学生情绪，提供了有效的学习建议，且内容准确清晰，符合教育心理学原理。"
+}
+[15:10:48.497] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[15:10:48.497] [MONITOR_AGENT] 状态更新: review_count: 4
+[15:10:48.497] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[15:10:48.497] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[15:10:48.497] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[15:10:48.497] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[15:10:48.497] [TEACHER_AGENT] 回复已发送: 第4轮，长度: 375字符
+[15:10:48.497] [STUDENT_AGENT] 收到教师回复: 第4轮: ...
+[15:10:48.497] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[15:10:49.884] [STUDENT_AGENT] 情绪分析: 第4轮, 新情绪: 失落
+[15:10:49.884] [STUDENT_AGENT] 开始生成第4轮回复: 基于教师回复: ... 当前情绪: 失落
+[15:10:54.417] [STUDENT_AGENT] 第4轮回复生成: 长度: 171字符, 新情绪: 失落
+[15:10:54.421] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:10:54.421] [STUDENT_AGENT] 添加对话历史: student: 老师，非常感谢您的回复和建议。我知道您一直在支持我，我真的很...
+[15:10:54.421] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第5轮
+[15:10:56.391] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然感到无助，并希望获得更多的学习资料和建议，表明他们还有疑问和困惑。
+[15:10:56.391] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然感到无助，并希望获得更多的学习资料和建议，表明他们还有疑问和困惑。",
+  "student_understanding": "学生表达了感激，但对复杂概念的理解仍然存在困难，寻求更多帮助和资源。",
+  "round_number": 5
+}
+[15:10:56.391] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然感到无助，并希望获得更多的学习资料和建议，表明他们还有疑问和困惑。
+[15:10:56.392] [STUDENT_AGENT] 继续对话: 第5轮
+[15:10:56.392] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[15:10:56.392] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[15:10:56.392] [TEACHER_AGENT] 收到学生消息: 第5轮: 老师，非常感谢您的回复和建议。我知道您一直在支持我，我真的很感激。但是，有时候我还是会感到很无助，尤...
+[15:10:56.392] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第5轮分析
+[15:10:56.392] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[15:10:59.386] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 4,
+  "analysis": "学生表达了对老师支持的感激之情，显示出积极的学习态度。然而，面对复杂概念时的无助感和压力表明其内心存在困惑和焦虑。虽然学生愿意尝试新的学习方法，但对自己要求过高导致的压力也反映出其自信心不足，信心程度较低。整体来看，学生在努力学习的同时，内心的困惑和焦虑情绪较为强烈。"
+}
+[15:10:59.386] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[15:11:02.116] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "理解错误",
+  "need_level": "情感需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生希望能够理解复杂的概念，并且感到无助和压力，表明其在理解上存在困难。由于对自己要求过高，导致情绪困扰，显示出其在情感层面上有支持的需求。学生希望找到简单易懂的学习资料，说明其偏好详细讲解以帮助理解。整体来看，学生需要在认知和情感上得到支持，以提升自信心和学习效果。"
+}
+[15:11:02.116] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[15:11:04.474] [TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "情感支持策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过积极的鼓励和安慰，帮助学生缓解焦虑，同时提供详细的概念解释和方法示范",
+  "tone": "温暖和鼓励",
+  "key_points": [
+    "给予学生情感支持",
+    "详细讲解复杂概念"
+  ],
+  "rationale": "学生在情感上有支持的需求，同时面临理解上的困惑，因此需要情感支持和认知支持的结合"
+}
+[15:11:04.474] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 情感支持策略
+[15:11:09.495] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 375字符
+[15:11:09.495] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 375字符
+[15:11:09.495] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[15:11:09.496] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[15:11:09.496] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第5轮
+[15:11:09.496] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 375字符
+[15:11:12.608] [MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复充分关注学生情绪，提供了具体的建议和支持，同时教学内容准确且方法科学合理，表达清晰易懂。
+[15:11:12.610] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 9,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复充分关注学生情绪，提供了具体的建议和支持，同时教学内容准确且方法科学合理，表达清晰易懂。"
+}
+[15:11:12.610] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[15:11:12.610] [MONITOR_AGENT] 状态更新: review_count: 5
+[15:11:12.610] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[15:11:12.611] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[15:11:12.611] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[15:11:12.611] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[15:11:12.611] [TEACHER_AGENT] 回复已发送: 第5轮，长度: 375字符
+[15:11:12.612] [STUDENT_AGENT] 收到教师回复: 第5轮: ...
+[15:11:12.612] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[15:11:14.417] [STUDENT_AGENT] 情绪分析: 第5轮, 新情绪: 失落
+[15:11:14.418] [STUDENT_AGENT] 开始生成第5轮回复: 基于教师回复: ... 当前情绪: 失落
+[15:11:17.615] [STUDENT_AGENT] 第5轮回复生成: 长度: 158字符, 新情绪: 失落
+[15:11:17.615] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:11:17.615] [STUDENT_AGENT] 添加对话历史: student: 老师，真的非常感谢您的理解和支持。虽然我知道我需要努力去克服...
+[15:11:17.615] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第6轮
+[15:11:20.109] [CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生仍然表达了对学习资源的需求，并希望获得更多具体的建议，说明他们仍有困惑和问题需要解决。
+[15:11:20.109] [CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生仍然表达了对学习资源的需求，并希望获得更多具体的建议，说明他们仍有困惑和问题需要解决。",
+  "student_understanding": "学生对当前问题的理解程度较低，感到沮丧和孤单，仍在寻求额外的支持和资源。",
+  "round_number": 6
+}
+[15:11:20.110] [STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生仍然表达了对学习资源的需求，并希望获得更多具体的建议，说明他们仍有困惑和问题需要解决。
+[15:11:20.110] [STUDENT_AGENT] 继续对话: 第6轮
+[15:11:20.110] [EVENT_BUS] 消息发送: student -> teacher (task_request)
+[15:11:20.110] [TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[15:11:20.110] [TEACHER_AGENT] 收到学生消息: 第6轮: 老师，真的非常感谢您的理解和支持。虽然我知道我需要努力去克服这些困难，但有时候我还是觉得很沮丧，难以...
+[15:11:20.110] [TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第6轮分析
+[15:11:20.110] [TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[15:11:23.471] [TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "沮丧",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 5,
+  "analysis": "学生表达了对老师理解和支持的感激，显示出积极的学习态度。然而，提到的沮丧感和孤独感表明他在面对学习挑战时感到压力和困惑。尽管如此，学生仍然愿意尝试老师的建议并寻找合适的学习资料，表现出一定的积极性和努力的意愿。他希望通过获得更多的资源和成功案例来增强自己的信心，这表明他对未来的学习仍然抱有希望。"
+}
+[15:11:23.471] [TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 沮丧
+[15:11:26.365] [TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "获得情感支持",
+  "difficulty_type": "情绪障碍",
+  "need_level": "情感需求",
+  "learning_preference": "示例演示",
+  "analysis": "学生在发言中表达了对老师支持的感激，同时也透露出沮丧和孤独的情绪，显示出他在学习过程中面临情绪障碍。尽管他意识到需要努力克服困难，但仍然需要更多的情感支持和具体的学习资源来增强信心。他希望通过成功的例子来激励自己，这表明他对情感支持的需求较高。此外，他愿意尝试老师的建议，说明他对学习的积极态度，但仍需进一步的引导和资源以提升学习效果。"
+}
+[15:11:26.365] [TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 获得情感支持
+[15:11:56.491] [TEACHER_AGENT] 策略选择失败: 使用默认结果，原始回复: None
+[15:11:56.492] [TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 认知支持策略
+[15:11:59.759] [TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 327字符
+[15:11:59.764] [TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 327字符
+[15:11:59.764] [EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[15:11:59.764] [MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[15:11:59.764] [MONITOR_AGENT] 收到审核请求: 首次审核 - 第6轮
+[15:11:59.764] [MONITOR_AGENT] 开始综合审核: 教师回复长度: 327字符
+[15:12:03.117] [MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复展现了良好的情感支持和专业知识，积极引导学生思考并提供具体建议。
+[15:12:03.117] [MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 9,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复展现了良好的情感支持和专业知识，积极引导学生思考并提供具体建议。",
+  "feedback": "继续保持这种支持性和引导性的交流方式，鼓励学生分享更多想法。"
+}
+[15:12:03.117] [EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[15:12:03.117] [MONITOR_AGENT] 状态更新: review_count: 6
+[15:12:03.117] [TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[15:12:03.117] [EVENT_BUS] 消息发送: teacher -> student (task_response)
+[15:12:03.118] [EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[15:12:03.118] [STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[15:12:03.118] [TEACHER_AGENT] 回复已发送: 第6轮，长度: 327字符
+[15:12:03.118] [STUDENT_AGENT] 收到教师回复: 第6轮: ...
+[15:12:03.119] [STUDENT_AGENT] 添加对话历史: teacher: ...
+[15:12:04.584] [STUDENT_AGENT] 情绪分析: 第6轮, 新情绪: 失落
+[15:12:04.584] [STUDENT_AGENT] 开始生成第6轮回复: 基于教师回复: ... 当前情绪: 失落
+[15:12:06.962] [STUDENT_AGENT] 第6轮回复生成: 长度: 152字符, 新情绪: 失落
+[15:12:06.964] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:12:06.964] [STUDENT_AGENT] 添加对话历史: student: 老师，谢谢您的理解和支持。虽然我努力去尝试您的建议，但有时候...
+[15:12:06.967] [CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第7轮
+[15:12:06.967] [CONVERSATION_ANALYZER_AGENT] 对话结束: 达到最大轮次7
+[15:12:06.967] [STUDENT_AGENT] 对话分析结果: should_end: True, reason: 达到最大对话轮次7
+[15:12:06.968] [STUDENT_AGENT] 发送对话结束消息: 对话ID: e3e6d3fc-551d-4fac-8caa-583a6a8b9a57
+[15:12:06.968] [EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[15:12:06.968] [ORCHESTRATOR_AGENT_AGENT] 处理对话结束: 对话ID: e3e6d3fc-551d-4fac-8caa-583a6a8b9a57
+[15:12:06.969] [ORCHESTRATOR_AGENT_AGENT] 对话结束: 总轮数: 7, 原因: 达到最大对话轮次7
+[15:12:06.969] [EVENT_BUS] 消息发送: orchestrator -> reflection (reflection_request)
+[15:12:06.969] [ORCHESTRATOR_AGENT_AGENT] 反思请求已发送: 对话ID: e3e6d3fc-551d-4fac-8caa-583a6a8b9a57
+[15:12:06.969] [REFLECTION_AGENT] 收到消息: 类型: reflection_request, 发送者: orchestrator
+[15:12:06.970] [REFLECTION_AGENT] 收到对话结束反思请求: 开始总结反思
+[15:12:06.970] [REFLECTION_AGENT] 开始对话总结反思: 总轮数: 7
+[15:12:06.970] [REFLECTION_AGENT] 开始LLM经验生成: 分析完整对话
+[15:12:06.974] [REFLECTION_AGENT] 开始LLM调用: 消息数量: 2
+[15:12:06.974] [REFLECTION_AGENT] 开始LLM调用: 消息数量: 2
+[15:12:06.975] [REFLECTION_AGENT] LLM线程启动: 等待60秒超时
+[15:12:07.609] [SYSTEM] 对话正常完成
+[15:12:07.609] [SYSTEM] 经验已成功写入 experience_bank.json
