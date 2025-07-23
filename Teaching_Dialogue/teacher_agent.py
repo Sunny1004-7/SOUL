@@ -21,7 +21,7 @@ class TeacherAgent(BaseAgent):
         self.pending_student_message = None     # 暂存学生消息
         
         # 教师角色的基础prompt
-        self.base_prompt = """你是一名经验丰富、富有耐心的中学数学老师，同时具备精准的知识状态感知能力。
+        self.base_prompt = """你是一名经验丰富、富有耐心的中学数学老师。
 
 你的教学理念：
 - 采用苏格拉底式教学方法，通过提问引导学生自己发现答案
@@ -229,7 +229,7 @@ class TeacherAgent(BaseAgent):
             }
         ]
         
-        response = self.llm_manager.call_llm(messages, temperature=0.3)
+        response = self.llm_manager.call_llm(messages, temperature=0.3, max_tokens=300)
         try:
             result = json.loads(response)
             if self.logger:
@@ -255,22 +255,7 @@ class TeacherAgent(BaseAgent):
         messages = [
             {
                 "role": "system",
-                "content": """你是一名专业的教育心理学专家。请根据学生的发言、情绪状态和知识掌握情况，推断学生的真实学习意图和需求。
-
-推断维度：
-1. 学习目标：理解概念、掌握方法、解决具体问题、获得情感支持等
-2. 困难类型：知识缺失、方法不当、理解错误、情绪障碍等
-3. 需求层次：认知需求、情感需求、元认知需求
-4. 学习偏好：详细讲解、示例演示、引导发现、练习巩固等
-
-请以JSON格式回复：
-{
-    "learning_goal": "学习目标",
-    "difficulty_type": "困难类型",
-    "need_level": "需求层次",
-    "learning_preference": "学习偏好",
-    "analysis": "详细分析"
-}"""
+                "content": """你是一名专业的教育心理学专家。请根据学生的发言、情绪状态和知识掌握情况，推断学生的真实学习意图和需求。\n\n推断维度：\n1. 学习目标：理解概念、掌握方法、解决具体问题、获得情感支持等\n2. 困难类型：知识缺失、方法不当、理解错误、情绪障碍等\n3. 需求层次：认知需求、情感需求、元认知需求\n4. 学习偏好：详细讲解、示例演示、引导发现、练习巩固等\n\n请严格以JSON格式回复，且回复内容必须为JSON对象，不能包含任何多余内容或解释，不能有多余的标点或注释。格式如下：\n{\n    \"learning_goal\": \"学习目标\",\n    \"difficulty_type\": \"困难类型\",\n    \"need_level\": \"需求层次\",\n    \"learning_preference\": \"学习偏好\",\n    \"analysis\": \"详细分析\"\n}\n如果无法判断请用空字符串。"""
             },
             {
                 "role": "user",
@@ -285,13 +270,15 @@ class TeacherAgent(BaseAgent):
             }
         ]
         
-        response = self.llm_manager.call_llm(messages, temperature=0.3)
+        response = self.llm_manager.call_llm(messages, temperature=0.3, max_tokens=300)
         try:
             result = json.loads(response)
             if self.logger:
                 self.logger.log_analysis_result("TEACHER", "意图推断（含知识状态）", result)
             return result
-        except:
+        except Exception as e:
+            if self.logger:
+                self.logger.log_agent_work("TEACHER", "意图推断失败", f"使用默认结果，原始回复: {response}")
             # 使用默认策略，不终止程序
             default_result = {
                 "learning_goal": "理解概念",
@@ -300,8 +287,6 @@ class TeacherAgent(BaseAgent):
                 "learning_preference": "详细讲解",
                 "analysis": "意图推断失败，使用默认分析"
             }
-            if self.logger:
-                self.logger.log_agent_work("TEACHER", "意图推断失败", "使用默认结果")
             return default_result
 
     def _select_teaching_strategy_with_knowledge(self, emotion_analysis: Dict[str, Any], intention_analysis: Dict[str, Any]) -> Dict[str, Any]:
@@ -312,34 +297,7 @@ class TeacherAgent(BaseAgent):
         messages = [
             {
                 "role": "system",
-                "content": """你是一名资深的教学策略专家。请根据学生的情绪状态、学习意图和知识掌握情况，选择最适合的个性化教学策略。
-
-可选策略类型：
-1. 情感支持策略：安慰鼓励、建立信心、缓解焦虑
-2. 认知支持策略：概念解释、方法示范、逐步引导
-3. 启发式策略：问题引导、类比启发、自主发现
-4. 实践策略：例题演示、练习指导、错误纠正
-5. 元认知策略：学习方法指导、思维过程展示
-6. 补救策略：基础回顾、概念澄清、薄弱点强化
-7. 拓展策略：深度挖掘、应用迁移、挑战提升
-
-策略选择原则：
-- 高情绪强度时优先情感支持
-- 低自信时注重鼓励和成功体验
-- 困惑时采用启发式引导
-- 知识缺失时进行系统讲解
-- 有知识薄弱点时采用补救策略
-- 基础扎实时可进行拓展教学
-
-请以JSON格式回复：
-{
-    "primary_strategy": "主要策略",
-    "secondary_strategy": "辅助策略",
-    "approach": "具体方法",
-    "tone": "语调风格",
-    "key_points": ["要点1", "要点2"],
-    "rationale": "选择理由"
-}"""
+                "content": """你是一名资深的教学策略专家。请根据学生的情绪状态、学习意图和知识掌握情况，选择最适合的个性化教学策略。\n\n可选策略类型：\n1. 情感支持策略：安慰鼓励、建立信心、缓解焦虑\n2. 认知支持策略：概念解释、方法示范、逐步引导\n3. 启发式策略：问题引导、类比启发、自主发现\n4. 实践策略：例题演示、练习指导、错误纠正\n5. 元认知策略：学习方法指导、思维过程展示\n6. 补救策略：基础回顾、概念澄清、薄弱点强化\n7. 拓展策略：深度挖掘、应用迁移、挑战提升\n\n策略选择原则：\n- 高情绪强度时优先情感支持\n- 低自信时注重鼓励和成功体验\n- 困惑时采用启发式引导\n- 知识缺失时进行系统讲解\n- 有知识薄弱点时采用补救策略\n- 基础扎实时可进行拓展教学\n\n请严格以JSON格式回复，且回复内容必须为JSON对象，不能包含任何多余内容或解释，不能有多余的标点或注释。格式如下：\n{\n    \"primary_strategy\": \"主要策略\",\n    \"secondary_strategy\": \"辅助策略\",\n    \"approach\": \"具体方法\",\n    \"tone\": \"语调风格\",\n    \"key_points\": [\"要点1\", \"要点2\"],\n    \"rationale\": \"选择理由\"\n}\n如果无法判断请用空字符串。"""
             },
             {
                 "role": "user",
@@ -354,13 +312,15 @@ class TeacherAgent(BaseAgent):
             }
         ]
         
-        response = self.llm_manager.call_llm(messages, temperature=0.3)
+        response = self.llm_manager.call_llm(messages, temperature=0.3, max_tokens=300)
         try:
             result = json.loads(response)
             if self.logger:
                 self.logger.log_analysis_result("TEACHER", "策略选择（含知识状态）", result)
             return result
-        except:
+        except Exception as e:
+            if self.logger:
+                self.logger.log_agent_work("TEACHER", "策略选择失败", f"使用默认结果，原始回复: {response}")
             default_result = {
                 "primary_strategy": "认知支持策略",
                 "secondary_strategy": "情感支持策略",
@@ -369,8 +329,6 @@ class TeacherAgent(BaseAgent):
                 "key_points": ["耐心解释", "逐步引导"],
                 "rationale": "策略选择失败，使用默认策略"
             }
-            if self.logger:
-                self.logger.log_agent_work("TEACHER", "策略选择失败", "使用默认结果")
             return default_result
 
     def _generate_teaching_response_with_knowledge(self, student_message: str, emotion_analysis: Dict[str, Any], 
@@ -400,14 +358,14 @@ class TeacherAgent(BaseAgent):
 3. 结合学生的知识掌握情况，重点关注薄弱点
 4. 利用学生的知识强项建立学习信心
 5. 语言自然流畅，符合老师的身份
-6. 长度适中，不要过长或过短
-7. 采用苏格拉底式教学方法：
+6. 长度适中，避免冗余发言，不要说废话，直接针对学生问题回答
+8. 采用苏格拉底式教学方法：
    - 不直接给出答案，而是通过精心设计的问题引导学生思考
    - 从学生已知的知识出发，逐步引导到未知领域
    - 鼓励学生表达自己的想法，即使想法不完整或错误
    - 通过反问和追问帮助学生发现逻辑漏洞
    - 让学生通过自己的思考得出结论，增强学习成就感
-8. 根据学生的知识准备程度调整提问的深度和难度"""
+"""
             },
             {
                 "role": "user",
@@ -419,7 +377,7 @@ class TeacherAgent(BaseAgent):
             }
         ]
         
-        response = self.llm_manager.call_llm(messages, temperature=0.7)
+        response = self.llm_manager.call_llm(messages, temperature=0.7, max_tokens=300)
         result = response if response else "我理解你的困惑，让我们一起来解决这个问题。"
         
         if self.logger:
@@ -493,7 +451,7 @@ class TeacherAgent(BaseAgent):
             }
         ]
         
-        new_response = self.llm_manager.call_llm(messages, temperature=0.8)
+        new_response = self.llm_manager.call_llm(messages, temperature=0.8, max_tokens=300)
         
         if new_response:
             # 重新发送给监控智能体

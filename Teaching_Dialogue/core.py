@@ -132,7 +132,7 @@ class EventBus:
                     recipient=message.sender,
                     type=MessageType.ERROR,
                     content={"error": str(e), "original_message_id": message.id},
-                    timestamp=""
+                    timestamp=datetime.now().isoformat()
                 )
                 sender = self.agents.get(message.sender)
                 if sender:
@@ -270,7 +270,7 @@ class ConversationOrchestrator:
         self.event_bus = event_bus
         self.logger = logger
         self.conversations: Dict[str, Dict[str, Any]] = {}
-        self.max_rounds = 10
+        self.max_rounds = 7
         self.termination_keywords = ["理解了", "明白了", "谢谢", "结束"]
     
     def start_conversation(self, conversation_id: str, participants: List[str], initial_message: str, problem_content: str) -> str:

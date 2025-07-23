@@ -13,7 +13,7 @@ class ConversationAnalyzer:
     def __init__(self, llm_manager, logger=None):
         self.llm_manager = llm_manager
         self.logger = logger
-        self.max_rounds = 10  # 最长对话轮次
+        self.max_rounds = 7  # 最长对话轮次
 
     def analyze_conversation_end(self, student_message: str, conversation_history: List[Dict], 
                                 round_number: int, problem_content: str) -> Dict[str, Any]:
@@ -82,8 +82,24 @@ class ConversationAnalyzer:
         
         if not response:
             if self.logger:
-                self.logger.log_agent_work("CONVERSATION_ANALYZER", "LLM调用失败", "程序终止")
-            raise Exception("对话分析器LLM调用失败：未获得有效响应")
+                self.logger.log_agent_work("CONVERSATION_ANALYZER", "LLM调用失败", "使用默认判断")
+            
+            # LLM调用失败时，使用智能默认判断
+            should_end = self._smart_default_judgment(student_message, round_number)
+            
+            default_result = {
+                "should_end": should_end,
+                "reason": "LLM调用失败，基于学生表达智能判断" + ("，学生表达理解应结束对话" if should_end else "，学生仍有疑问应继续对话"),
+                "student_understanding": "LLM调用失败，无法准确评估学生理解程度",
+                "round_number": round_number
+            }
+            
+            if self.logger:
+                end_status = "结束" if should_end else "继续"
+                self.logger.log_agent_work("CONVERSATION_ANALYZER", f"对话{end_status}（默认）", 
+                                         f"理由: {default_result['reason']}")
+            
+            return default_result
         
         try:
             result = json.loads(response)
@@ -107,7 +123,65 @@ class ConversationAnalyzer:
             return result
             
         except Exception as e:
-            # LLM解析失败，直接终止程序
+            # LLM解析失败，使用默认值而不是终止程序
             if self.logger:
-                self.logger.log_agent_work("CONVERSATION_ANALYZER", "分析失败", f"错误: {e}")
-            raise Exception(f"对话分析器LLM解析失败：{str(e)}") 
+                self.logger.log_agent_work("CONVERSATION_ANALYZER", "LLM解析失败", f"使用默认值，错误: {e}")
+            
+            # 基于学生消息内容智能判断是否应该结束
+            should_end = self._smart_default_judgment(student_message, round_number)
+            
+            default_result = {
+                "should_end": should_end,
+                "reason": "LLM解析失败，基于学生表达智能判断" + ("，学生表达理解应结束对话" if should_end else "，学生仍有疑问应继续对话"),
+                "student_understanding": "LLM解析失败，无法准确评估学生理解程度",
+                "round_number": round_number
+            }
+            
+            if self.logger:
+                end_status = "结束" if should_end else "继续"
+                self.logger.log_agent_work("CONVERSATION_ANALYZER", f"对话{end_status}（默认）", 
+                                         f"理由: {default_result['reason']}")
+            
+            return default_result
+    
+    def _smart_default_judgment(self, student_message: str, round_number: int) -> bool:
+        """智能默认判断是否应该结束对话"""
+        # 如果超过最大轮次，直接结束
+        if round_number >= self.max_rounds:
+            return True
+        
+        # 检查学生是否表达了理解和感谢
+        end_indicators = [
+            "谢谢", "感谢", "明白了", "我懂了", "理解了", "清楚了", 
+            "知道了", "学会了", "掌握了", "好的", "嗯", "是的",
+            "没问题", "清楚了", "明白了", "懂了", "理解了"
+        ]
+        
+        # 检查学生是否还有疑问或困惑
+        continue_indicators = [
+            "但是", "不过", "还是", "仍然", "依然", "还是有点",
+            "不太明白", "不太清楚", "不太理解", "有点困惑", "有点疑问",
+            "能再", "可以再", "能否", "可以吗", "怎么", "为什么",
+            "什么", "哪个", "哪里", "如何", "怎样"
+        ]
+        
+        message_lower = student_message.lower()
+        
+        # 如果包含结束指示词且不包含继续指示词，则结束对话
+        has_end_indicator = any(indicator in message_lower for indicator in end_indicators)
+        has_continue_indicator = any(indicator in message_lower for indicator in continue_indicators)
+        
+        # 如果学生明确表达感谢和理解，且没有新的疑问，则结束
+        if has_end_indicator and not has_continue_indicator:
+            return True
+        
+        # 如果学生有新的疑问或困惑，则继续对话
+        if has_continue_indicator:
+            return False
+        
+        # 默认情况下，如果轮次较少（前3轮），倾向于继续对话
+        if round_number <= 3:
+            return False
+        
+        # 如果轮次较多且学生没有明确表达，倾向于结束对话
+        return True 

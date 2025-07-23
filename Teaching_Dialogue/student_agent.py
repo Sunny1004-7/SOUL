@@ -6,19 +6,26 @@
 from core import BaseAgent, MessageType, Message
 from typing import Dict, Any, Optional
 from datetime import datetime
+import random
+import sys
+import os
+
+# 添加路径以导入persona_loader
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'Emotional_Quantification'))
+from persona_loader import STUDENT_PERSONAS
 
 
 class StudentAgent(BaseAgent):
     """基于AutoGen架构的学生智能体"""
     
     def __init__(self, name: str, llm_manager, problem_content: str, 
-                 persona: str = "耐心但容易紧张的中学生", 
+                 user_id: str = None,
                  initial_emotion: str = "困惑", 
                  logger=None):
         super().__init__(name, logger)
         self.llm_manager = llm_manager
         self.problem_content = problem_content
-        self.persona = persona
+        self.user_id = user_id
         self.initial_emotion = initial_emotion
         
         # 学生状态
@@ -28,6 +35,13 @@ class StudentAgent(BaseAgent):
         # 对话历史存储
         self.conversation_history = []
         
+        # 加载学生历史记录
+        self.student_history = []
+        self._load_student_history()
+        
+        # 随机选择学生人格
+        self.persona = self._select_random_persona()
+        
         # 导入对话分析器
         from conversation_analyzer import ConversationAnalyzer
         self.conversation_analyzer = ConversationAnalyzer(llm_manager, logger)
@@ -36,7 +50,40 @@ class StudentAgent(BaseAgent):
         self._register_student_handlers()
         
         if self.logger:
-            self.logger.log_agent_work("STUDENT", "初始化完成", f"学生角色: {persona}")
+            self.logger.log_agent_work("STUDENT", "初始化完成", 
+                                     f"学生ID: {user_id}, 人格: {self.persona}, 历史题目数: {len(self.student_history)}")
+
+    def _load_student_history(self):
+        """加载学生历史习题作答记录"""
+        try:
+            from student_data_loader import StudentDataLoader
+            loader = StudentDataLoader()
+            
+            if self.user_id is None:
+                # 如果没有指定user_id，使用第一个学生
+                self.user_id = loader.get_first_student_id()
+                if self.user_id is None:
+                    if self.logger:
+                        self.logger.log_agent_work("STUDENT", "警告", "无法获取学生ID，使用默认设置")
+                    return
+            
+            # 获取学生历史记录（排除最后一条）
+            self.student_history = loader.get_student_history_except_last(self.user_id)
+            
+            if self.logger:
+                self.logger.log_agent_work("STUDENT", "历史记录加载", 
+                                         f"题目数: {len(self.student_history)}")
+                
+        except Exception as e:
+            if self.logger:
+                self.logger.log_agent_work("STUDENT", "历史记录加载失败", f"错误: {e}")
+            self.student_history = []
+
+    def _select_random_persona(self) -> str:
+        """随机选择学生人格"""
+        persona_keys = list(STUDENT_PERSONAS.keys())
+        selected_key = random.choice(persona_keys)
+        return STUDENT_PERSONAS[selected_key]
 
     def initialize(self):
         """初始化学生智能体"""
@@ -110,8 +157,14 @@ class StudentAgent(BaseAgent):
                 student_response, conversation_history, round_number + 1, self.problem_content
             )
             should_end = analysis_result.get("should_end", False)
+            
+            if self.logger:
+                self.logger.log_agent_work("STUDENT", "对话分析结果", f"should_end: {should_end}, reason: {analysis_result.get('reason', 'unknown')}")
+            
             if should_end:
                 # 通知协调器对话结束
+                if self.logger:
+                    self.logger.log_agent_work("STUDENT", "发送对话结束消息", f"对话ID: {self.conversation_id}")
                 self.send_message(
                     recipient="orchestrator",
                     message_type=MessageType.SYSTEM_CONTROL,
@@ -126,6 +179,8 @@ class StudentAgent(BaseAgent):
                 )
             else:
                 # 继续对话，发送给教师
+                if self.logger:
+                    self.logger.log_agent_work("STUDENT", "继续对话", f"第{round_number + 1}轮")
                 self.send_message(
                     recipient="teacher",
                     message_type=MessageType.TASK_REQUEST,
@@ -147,6 +202,21 @@ class StudentAgent(BaseAgent):
             if self.logger:
                 self.logger.log_agent_work("STUDENT", "对话结束", f"对话ID: {content.get('conversation_id')}")
             self.conversation_id = None
+        
+        elif action == "get_conversation_history":
+            # 返回对话历史给协调器
+            conversation_id = content.get("conversation_id")
+            if conversation_id == self.conversation_id:
+                self.send_message(
+                    recipient="orchestrator",
+                    message_type=MessageType.SYSTEM_CONTROL,
+                    content={
+                        "action": "conversation_history_response",
+                        "conversation_id": conversation_id,
+                        "conversation_history": self.conversation_history
+                    },
+                    correlation_id=conversation_id
+                )
 
     def _get_conversation_history(self) -> list:
         """获取对话历史"""
@@ -170,7 +240,10 @@ class StudentAgent(BaseAgent):
     def _generate_first_message(self) -> str:
         """生成第一轮发言"""
         if self.logger:
-            self.logger.log_agent_work("STUDENT", "开始生成第一轮发言", "基于题目内容生成初始问题")
+            self.logger.log_agent_work("STUDENT", "开始生成第一轮发言", "基于题目内容和历史记录生成初始问题")
+        
+        # 构建历史记录上下文
+        history_context = self._build_history_context()
         
         messages = [
             {
@@ -181,15 +254,24 @@ class StudentAgent(BaseAgent):
                 "role": "user",
                 "content": f"""你需要解决这个题目：{self.problem_content}
 
+{history_context}
+
 请生成你的第一轮发言，要求：
 1. 表达你对这个题目的困惑
 2. 说明你希望得到什么样的帮助
 3. 语言要自然，符合中学生特点
-4. 体现你的性格特点"""
+4. 体现你的性格特点
+"""
             }
         ]
         
         response = self.llm_manager.call_llm(messages, temperature=0.8)
+        
+        # 处理LLM调用失败的情况
+        if not response:
+            response = "老师，我还在思考您刚才说的话，让我再想想..."
+            if self.logger:
+                self.logger.log_agent_work("STUDENT", "LLM调用失败", "使用默认回复")
         
         if self.logger:
             self.logger.log_agent_work("STUDENT", "初始发言生成", f"长度: {len(response)}字符")
@@ -213,6 +295,26 @@ class StudentAgent(BaseAgent):
             )
         
         return response
+
+    def _build_history_context(self) -> str:
+        """构建历史记录上下文"""
+        if not self.student_history:
+            return "这是你第一次做题，没有历史记录。"
+        
+        total_problems = len(self.student_history)
+        
+        context = f"""你的历史做题情况：
+- 总共做过 {total_problems} 道题
+"""
+        
+        # 显示最近几道题的基本信息
+        if self.student_history:
+            context += "\n最近做题情况：\n"
+            for i, record in enumerate(self.student_history[-5:], 1):  # 只显示最近5道题
+                content = record.get('content', '')[:50] + '...' if len(record.get('content', '')) > 50 else record.get('content', '')
+                context += f"{i}. {content}\n"
+        
+        return context
 
     def _analyze_emotion(self, teacher_message: str, round_number: int) -> str:
         """用LLM分析学生当前情绪"""
@@ -258,6 +360,13 @@ class StudentAgent(BaseAgent):
             {"role": "user", "content": f"{context}老师最新回复：{teacher_message}\n当前情绪：{self.current_emotion}\n请以学生身份自然回复老师。"}
         ]
         response = self.llm_manager.call_llm(messages, temperature=0.8)
+        
+        # 处理LLM调用失败的情况
+        if not response:
+            response = "老师，我还在思考您刚才说的话，让我再想想..."
+            if self.logger:
+                self.logger.log_agent_work("STUDENT", "LLM调用失败", "使用默认回复")
+        
         if self.logger:
             self.logger.log_agent_work("STUDENT", f"第{round_number}轮回复生成", f"长度: {len(response)}字符, 新情绪: {self.current_emotion}")
         # 通知对话协调器记录消息
@@ -289,5 +398,6 @@ class StudentAgent(BaseAgent):
         return {
             "current_emotion": self.current_emotion,
             "persona": self.persona,
-            "conversation_id": self.conversation_id
+            "conversation_id": self.conversation_id,
+            "user_id": self.user_id
         } 

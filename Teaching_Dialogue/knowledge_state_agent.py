@@ -10,6 +10,7 @@ from datetime import datetime
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
 from core import BaseAgent, MessageType, Message
+from student_data_loader import StudentDataLoader
 
 @dataclass
 class ExerciseRecord:
@@ -21,10 +22,9 @@ class ExerciseRecord:
 class KnowledgeStateAgent(BaseAgent):
     """知识状态感知智能体"""
     
-    def __init__(self, name: str, llm_manager, data_file="student_records.json", logger=None):
+    def __init__(self, name: str, llm_manager, logger=None):
         super().__init__(name, logger)
         self.llm_manager = llm_manager
-        self.data_file = data_file
         self.exercise_records: List[ExerciseRecord] = []
         
         # 注册消息处理器
@@ -47,97 +47,25 @@ class KnowledgeStateAgent(BaseAgent):
         self.message_handlers[MessageType.SYSTEM_CONTROL] = self._handle_system_control
 
     def load_student_records(self):
-        """加载学生历史习题记录"""
-        if os.path.exists(self.data_file):
-            try:
-                with open(self.data_file, "r", encoding="utf-8") as f:
-                    data = json.load(f)
-                    
-                # 转换为数据结构
-                for record_data in data.get("exercise_records", []):
-                    record = ExerciseRecord(**record_data)
-                    self.exercise_records.append(record)
-                
-                if self.logger:
-                    self.logger.log_agent_work("KNOWLEDGE", "数据加载成功", f"加载了{len(self.exercise_records)}条记录")
-                    
-            except Exception as e:
-                error_msg = f"加载学生记录失败: {e}"
-                if self.logger:
-                    self.logger.log_agent_work("KNOWLEDGE", "数据加载失败", error_msg)
-                print(error_msg)
-                self._create_sample_data()
-        else:
-            if self.logger:
-                self.logger.log_agent_work("KNOWLEDGE", "数据文件不存在", "创建示例数据")
-            self._create_sample_data()
-
-    def _create_sample_data(self):
-        """创建示例学生习题记录数据"""
-        sample_records = [
-            {
-                "question_content": "解一元二次方程：x² - 5x + 6 = 0",
-                "knowledge_points": ["一元二次方程", "因式分解", "求根公式"],
-                "is_correct": True
-            },
-            {
-                "question_content": "因式分解：x² - 4x + 4",
-                "knowledge_points": ["因式分解", "完全平方公式"],
-                "is_correct": False
-            },
-            {
-                "question_content": "计算：2x + 3 = 7，求x的值",
-                "knowledge_points": ["一元一次方程", "基本运算"],
-                "is_correct": True
-            },
-            {
-                "question_content": "解不等式：2x - 1 > 5",
-                "knowledge_points": ["不等式", "基本运算"],
-                "is_correct": False
-            },
-            {
-                "question_content": "二次函数y = x² - 4x + 3的对称轴是？",
-                "knowledge_points": ["二次函数", "对称轴"],
-                "is_correct": True
-            }
-        ]
-        
-        # 转换为数据结构
-        for record_data in sample_records:
-            record = ExerciseRecord(**record_data)
-            self.exercise_records.append(record)
-        
-        # 保存示例数据
-        self.save_student_records()
-        
-        if self.logger:
-            self.logger.log_agent_work("KNOWLEDGE", "示例数据创建完成", f"创建了{len(sample_records)}条记录")
-
-    def save_student_records(self):
-        """保存学生记录到文件"""
+        """统一从 StudentDataLoader 读取 stuRec_1000.csv 的第一个学生历史记录"""
         try:
-            data = {
-                "exercise_records": [
-                    {
-                        "question_content": record.question_content,
-                        "knowledge_points": record.knowledge_points,
-                        "is_correct": record.is_correct
-                    }
-                    for record in self.exercise_records
-                ],
-                "last_updated": datetime.now().isoformat()
-            }
-            
-            with open(self.data_file, "w", encoding="utf-8") as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-                
+            loader = StudentDataLoader()
+            user_id = loader.get_first_student_id()
+            if user_id is None:
+                if self.logger:
+                    self.logger.log_agent_work("KNOWLEDGE", "数据加载失败", "找不到学生ID")
+                return
+            # 获取该学生所有历史作答记录
+            history = loader.get_student_history(user_id)
+            for record_data in history:
+                record = ExerciseRecord(**record_data)
+                self.exercise_records.append(record)
             if self.logger:
-                self.logger.log_agent_work("KNOWLEDGE", "数据保存成功", f"保存了{len(self.exercise_records)}条记录")
-                
+                self.logger.log_agent_work("KNOWLEDGE", "数据加载成功", f"加载了{len(self.exercise_records)}条记录")
         except Exception as e:
-            error_msg = f"保存学生记录失败: {e}"
+            error_msg = f"加载学生记录失败: {e}"
             if self.logger:
-                self.logger.log_agent_work("KNOWLEDGE", "数据保存失败", error_msg)
+                self.logger.log_agent_work("KNOWLEDGE", "数据加载失败", error_msg)
             print(error_msg)
 
     def _handle_analysis_request(self, message: Message):
@@ -308,5 +236,5 @@ class KnowledgeStateAgent(BaseAgent):
         return {
             "total_exercise_records": len(self.exercise_records),
             "records_analyzed": self.state.get("records_analyzed", 0),
-            "data_file": self.data_file
+            "data_file": "stuRec_1000.csv" # 数据文件名称
         } 

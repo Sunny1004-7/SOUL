@@ -1,57 +1,19 @@
 {
-  "二次方程求解_困惑紧张_10": {
-    "problem_scenario": "二次方程求解教学",
+  "发热激活物的分类和理_困惑_沮丧_7": {
+    "problem_scenario": "发热激活物的分类和理解教学",
     "student_emotions": [
       "困惑",
-      "紧张"
+      "沮丧"
     ],
-    "student_understanding_level": 7.5,
-    "teacher_strategies": [
-      "情感支持策略",
-      "认知支持策略",
-      "启发式引导"
-    ],
-    "effectiveness_score": 8.5,
-    "applicable_conditions": [
-      "学生对数学概念感到困惑",
-      "学生情绪紧张需要支持",
-      "需要因式分解知识讲解"
-    ]
-  },
-  "二次方程求解教学_困惑_紧张_8": {
-    "problem_scenario": "二次方程求解教学",
-    "student_emotions": [
-      "困惑",
-      "紧张"
-    ],
-    "student_understanding_level": 7.0,
-    "teacher_strategies": [
-      "情感支持与积极反馈",
-      "引导学生表达理解",
-      "逐步引导解决问题"
-    ],
-    "effectiveness_score": 8.5,
-    "applicable_conditions": [
-      "适合有一定基础但存在困惑的学生",
-      "适合需要情感支持以提升学习信心的场景"
-    ]
-  },
-  "二次方程求解教学_困惑_紧张_4": {
-    "problem_scenario": "二次方程求解教学",
-    "student_emotions": [
-      "困惑",
-      "紧张"
-    ],
-    "student_understanding_level": 7.0,
+    "student_understanding_level": 4.0,
     "teacher_strategies": [
       "情感支持与鼓励",
-      "引导式提问",
-      "逐步讲解求根公式"
+      "引导式提问"
     ],
-    "effectiveness_score": 8.5,
+    "effectiveness_score": 6.0,
     "applicable_conditions": [
-      "学生对二次方程有初步了解",
-      "学生需要情感支持以克服紧张"
+      "学生对概念有初步接触但理解不深",
+      "需要个性化的学习支持和具体示例"
     ]
   }
 }
