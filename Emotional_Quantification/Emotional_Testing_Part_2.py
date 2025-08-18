@@ -17,13 +17,14 @@ llm_config = {
 def create_agent(prompt, name):
     return ConversableAgent(name=name, llm_config=llm_config, system_message=prompt)
 
-# 从 persona_loader 中随机挑选学生和教师人格
+# 从 persona_loader 中随机挑选学生人格，教师使用标准苏格拉底教学范式
 student_key = random.choice(list(persona_loader.STUDENT_PERSONAS.keys()))
-teacher_key = random.choice(list(persona_loader.TEACHER_PERSONAS.keys()))
 student_prompt = persona_loader.STUDENT_PERSONAS[student_key]
-teacher_prompt = persona_loader.TEACHER_PERSONAS[teacher_key]
 
-agent_teacher = create_agent(teacher_prompt, name=teacher_key)
+# 教师使用标准的苏格拉底教学范式，不设定特定人格
+teacher_prompt = "You are a standard Socratic AI teacher agent. Use the Socratic method to guide students through problems step by step. Ask leading questions, encourage critical thinking, and help students discover answers themselves. Do not show emotional reactions or personality traits - focus purely on educational guidance."
+
+agent_teacher = create_agent(teacher_prompt, name="socratic_teacher")
 agent_student = create_agent(student_prompt, name=student_key)
 
 conversation_history = []
@@ -59,14 +60,13 @@ for round_idx in range(1, 11):
     print("-" * 50)
     time.sleep(1)
 
+# 新的数据格式：只包含学生人格和对话内容
 output = {
-    "teacher_key": teacher_key,
-    "teacher_prompt": teacher_prompt,
-    "student_key": student_key,
-    "student_prompt": student_prompt,
+    "student_persona": student_prompt,
     "conversation": conversation_history
 }
+
 with open("conversation_part_2.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print("Dialogue and personas saved to conversation_part_2.json")
+print("Dialogue and student persona saved to conversation_part_2.json")
