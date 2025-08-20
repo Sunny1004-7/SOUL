@@ -248,123 +248,128 @@ class TeacherAgent(BaseAgent):
             return default_result
 
     def _infer_student_intention_with_knowledge(self, student_message: str, emotion_analysis: Dict[str, Any], student_state: Dict[str, Any]) -> Dict[str, Any]:
-        """推断学生学习意图"""
-        if self.logger:
-            self.logger.log_agent_work("TEACHER", "开始意图推断（含知识状态）", f"基于情绪: {emotion_analysis.get('primary_emotion', '未知')}")
-        
-        messages = [
-            {
-                "role": "system",
-                "content": """你是一名专业的教育心理学专家。请根据学生的发言、情绪状态和知识掌握情况，推断学生的真实学习意图和需求。\n\n推断维度：\n1. 学习目标：理解概念、掌握方法、解决具体问题、获得情感支持等\n2. 困难类型：知识缺失、方法不当、理解错误、情绪障碍等\n3. 需求层次：认知需求、情感需求、元认知需求\n4. 学习偏好：详细讲解、示例演示、引导发现、练习巩固等\n\n请严格以JSON格式回复，且回复内容必须为JSON对象，不能包含任何多余内容或解释，不能有多余的标点或注释。格式如下：\n{\n    \"learning_goal\": \"学习目标\",\n    \"difficulty_type\": \"困难类型\",\n    \"need_level\": \"需求层次\",\n    \"learning_preference\": \"学习偏好\",\n    \"analysis\": \"详细分析\"\n}\n如果无法判断请用空字符串。"""
-            },
-            {
-                "role": "user",
-                "content": f"""学生发言：{student_message}
-
-情绪分析：{emotion_analysis}
-
-学生知识状态总结：
-{self.overall_knowledge_summary or "暂无知识状态信息"}
-
-请推断学生的学习意图和需求。"""
-            }
-        ]
-        
-        response = self.llm_manager.call_llm(messages, temperature=0.3, max_tokens=300)
+        """推断学生意图（结合预生成的知识状态摘要）"""
         try:
-            result = json.loads(response)
-            if self.logger:
-                self.logger.log_analysis_result("TEACHER", "意图推断（含知识状态）", result)
-            return result
+            # 构建包含知识状态摘要的提示词
+            knowledge_context = ""
+            if self.overall_knowledge_summary:
+                knowledge_context = f"\n\n学生知识状态摘要：{self.overall_knowledge_summary}"
+            
+            prompt = f"""
+请分析以下学生的真实意图和需求：
+
+学生消息：{student_message}
+情绪分析：{json.dumps(emotion_analysis, ensure_ascii=False)}
+学生状态：{json.dumps(student_state, ensure_ascii=False)}{knowledge_context}
+
+请从以下维度分析：
+1. 主要意图：寻求答案、理解概念、验证想法、寻求鼓励等
+2. 知识需求：具体知识点、概念理解、解题方法、思维训练等
+3. 困难类型：概念不清、方法不明、思维障碍、情绪困扰等
+4. 学习阶段：探索阶段、理解阶段、应用阶段、反思阶段等
+5. 期望帮助：直接答案、引导思考、方法指导、情感支持等
+
+请以JSON格式返回分析结果。
+"""
+            
+            messages = [
+                {"role": "system", "content": "你是一个专业的教学意图分析专家，专门分析学生的学习意图和需求。"},
+                {"role": "user", "content": prompt}
+            ]
+            
+            response = self.llm_manager.call_llm(messages, temperature=0.3, max_tokens=600)
+            
+            if response:
+                try:
+                    intention_analysis = json.loads(response)
+                    if self.logger:
+                        self.logger.log_analysis_result("TEACHER", "意图推断（含知识状态）", intention_analysis)
+                    return intention_analysis
+                except json.JSONDecodeError:
+                    return self._get_default_intention_analysis()
+            else:
+                return self._get_default_intention_analysis()
+                
         except Exception as e:
             if self.logger:
-                self.logger.log_agent_work("TEACHER", "意图推断失败", f"使用默认结果，原始回复: {response}")
-            # 使用默认策略，不终止程序
-            default_result = {
-                "learning_goal": "理解概念",
-                "difficulty_type": "知识缺失",
-                "need_level": "认知需求",
-                "learning_preference": "详细讲解",
-                "analysis": "意图推断失败，使用默认分析"
-            }
-            return default_result
+                self.logger.log_agent_work("TEACHER", "意图推断失败", f"错误: {str(e)}")
+            return self._get_default_intention_analysis()
+
+    def _get_default_intention_analysis(self) -> Dict[str, Any]:
+        """获取默认的意图分析结果"""
+        return {
+            "main_intention": "seek_understanding",
+            "knowledge_need": "concept_clarification",
+            "difficulty_type": "conceptual_confusion",
+            "learning_stage": "understanding",
+            "expected_help": "guided_thinking"
+        }
 
     def _select_teaching_strategy_with_knowledge(self, emotion_analysis: Dict[str, Any], intention_analysis: Dict[str, Any]) -> Dict[str, Any]:
-        """选择教学策略"""
-        if self.logger:
-            self.logger.log_agent_work("TEACHER", "开始策略选择（含知识状态）", f"目标: {intention_analysis.get('learning_goal', '未知')}")
-        
-        messages = [
-            {
-                "role": "system",
-                "content": """你是一名资深的教学策略专家。请根据学生的情绪状态、学习意图和知识掌握情况，选择最适合的个性化教学策略。
-
-可选策略类型：
-1. 情感支持策略：安慰鼓励、建立信心、缓解焦虑
-2. 认知支持策略：概念解释、方法示范、逐步引导
-3. 启发式策略：问题引导、类比启发、自主发现
-4. 实践策略：例题演示、练习指导、错误纠正
-5. 元认知策略：学习方法指导、思维过程展示
-6. 补救策略：基础回顾、概念澄清、薄弱点强化
-7. 拓展策略：深度挖掘、应用迁移、挑战提升
-
-策略选择原则：
-- 高情绪强度时优先情感支持
-- 低自信时注重鼓励和成功体验
-- 困惑时采用启发式引导
-- 知识缺失时进行系统讲解
-- 有知识薄弱点时采用补救策略
-- 基础扎实时可进行拓展教学
-
-请严格以JSON格式回复，且回复内容必须为JSON对象，不能包含任何多余内容或解释，不能有多余的标点或注释。格式如下：
-{
-    "primary_strategy": "主要策略",
-    "secondary_strategy": "辅助策略",
-    "approach": "具体方法",
-    "tone": "语调风格",
-    "key_points": ["要点1", "要点2"],
-    "rationale": "选择理由"
-}
-如果无法判断请用空字符串。"""
-            },
-            {
-                "role": "user",
-                "content": f"""情绪分析：{emotion_analysis}
-
-意图推断：{intention_analysis}
-
-学生知识状态总结：
-{self.overall_knowledge_summary or "暂无知识状态信息"}
-
-请选择最适合的个性化教学策略。"""
-            }
-        ]
-        
-        response = self.llm_manager.call_llm(messages, temperature=0.3, max_tokens=300)
+        """选择教学策略（结合预生成的知识状态摘要）"""
         try:
-            result = json.loads(response)
-            if self.logger:
-                self.logger.log_analysis_result("TEACHER", "策略选择（含知识状态）", result)
-            return result
+            # 构建包含知识状态摘要的提示词
+            knowledge_context = ""
+            if self.overall_knowledge_summary:
+                knowledge_context = f"\n\n学生知识状态摘要：{self.overall_knowledge_summary}"
+            
+            prompt = f"""
+基于以下分析，请选择最适合的教学策略：
+
+情绪分析：{json.dumps(emotion_analysis, ensure_ascii=False)}
+意图分析：{json.dumps(intention_analysis, ensure_ascii=False)}{knowledge_context}
+
+请从以下策略中选择并说明理由：
+1. 苏格拉底式提问：通过层层递进的问题引导学生思考
+2. 概念分解：将复杂概念分解为简单易懂的部分
+3. 类比教学：使用生活中的例子类比抽象概念
+4. 错误分析：分析学生的错误，引导其发现逻辑漏洞
+5. 鼓励支持：给予情感支持和鼓励，增强学习信心
+6. 思维训练：训练学生的逻辑思维和批判性思维
+7. 知识连接：帮助学生建立知识间的联系
+8. 实践应用：通过实际应用加深理解
+
+请以JSON格式返回策略选择和理由。
+"""
+            
+            messages = [
+                {"role": "system", "content": "你是一个专业的教学策略专家，专门为不同情况选择最适合的教学策略。"},
+                {"role": "user", "content": prompt}
+            ]
+            
+            response = self.llm_manager.call_llm(messages, temperature=0.4, max_tokens=500)
+            
+            if response:
+                try:
+                    strategy_selection = json.loads(response)
+                    if self.logger:
+                        self.logger.log_analysis_result("TEACHER", "策略选择（含知识状态）", strategy_selection)
+                    return strategy_selection
+                except json.JSONDecodeError:
+                    return self._get_default_strategy_selection()
+            else:
+                return self._get_default_strategy_selection()
+                
         except Exception as e:
             if self.logger:
-                self.logger.log_agent_work("TEACHER", "策略选择失败", f"使用默认结果，原始回复: {response}")
-            default_result = {
-                "primary_strategy": "认知支持策略",
-                "secondary_strategy": "情感支持策略",
-                "approach": "详细讲解",
-                "tone": "温和友善",
-                "key_points": ["耐心解释", "逐步引导"],
-                "rationale": "策略选择失败，使用默认策略"
-            }
-            return default_result
+                self.logger.log_agent_work("TEACHER", "策略选择失败", f"错误: {str(e)}")
+            return self._get_default_strategy_selection()
+
+    def _get_default_strategy_selection(self) -> Dict[str, Any]:
+        """获取默认的策略选择结果"""
+        return {
+            "strategy": "socratic_questioning",
+            "reason": "采用苏格拉底式提问引导学生自主思考",
+            "approach": "层层递进的问题引导",
+            "focus": "思维训练和概念理解"
+        }
 
     def _generate_teaching_response_with_knowledge(self, student_message: str, emotion_analysis: Dict[str, Any], 
                                                   intention_analysis: Dict[str, Any], strategy_selection: Dict[str, Any], 
                                                   round_number: int) -> str:
         """生成教学回复（结合知识状态总结）"""
         if self.logger:
-            strategy = strategy_selection.get('primary_strategy', '未知')
+            strategy = strategy_selection.get('strategy', '未知')
             self.logger.log_agent_work("TEACHER", "开始生成回复（含知识状态）", f"策略: {strategy}")
         
         messages = [
