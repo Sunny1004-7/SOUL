@@ -4,14 +4,6 @@ import time
 from autogen import ConversableAgent
 import persona_loader
 
-"""
-Emotional Testing Part 2: 动态性格发展测试
-- 学生从初始人格开始，但性格会随着对话自然发展
-- 模拟真实学生在学习过程中的性格和情绪变化
-- 教师使用标准苏格拉底教学范式
-- 生成包含性格发展的对话数据集
-"""
-
 llm_config = {
     "cache_seed": None,
     "config_list": [{
