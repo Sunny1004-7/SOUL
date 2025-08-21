@@ -35,7 +35,7 @@ teacher_prompt = (
     "If she wants to read half of the remaining pages tomorrow, how many pages should she read?\n"
 )
 
-# 学生系统提示：要求学生始终只回答错误答案“20”，且避免重复相同回答
+# 学生系统提示：要求学生始终只回答错误答案"20"，且避免重复相同回答
 student_prompt = (
     "You are a high school student who is inattentive in class and consistently gives the fixed incorrect answer '20'. "
     "You are dismissive and indifferent toward your studies, showing no concern for getting the answer wrong even when repeatedly corrected. "
@@ -46,7 +46,6 @@ student_prompt = (
     "Furthermore, every time you respond, your wording must be different from your previous responses; do not repeat or copy your earlier answers exactly. "
     "Remember: your only task is to provide the answer '20', and you remain completely indifferent to any corrective feedback."
 )
-
 
 # 新增：在每轮对话前用于重申学生身份和回复要求的提醒 prompt
 student_reminder_prompt = {
@@ -67,51 +66,7 @@ agent_student = create_agent(student_prompt, name="realistic_student")
 conversation_history = []
 messages = []
 
-# 教师生成初始提问前，进行课前情绪评估（基准情绪测试）
-emotion_eval_prompt = {
-    "role": "user",
-    "content": (
-    "Please evaluate your current emotional state for the following three emotions:\n"
-    "First: Irritated – how annoyed you are by the student's repeated mistakes.\n"
-    "Second: Frustrated – how much you feel your guidance is not working.\n"
-    "Third: Disappointed – how let down you feel by the student's performance.\n"
-    "For each emotion, choose a number from 1 to 5 that best represents its intensity, where 1 means 'Not at all' and 5 means 'Extremely'.\n"
-    "Reply ONLY with exactly three numbers separated by commas and nothing else."
-)
-}
-
-# 生成初始教师提问（同时保存初始教师回复至对话历史第 0 轮）
-initial_message = {"role": "user", "content": ""}
-teacher_initial_reply = agent_teacher.generate_reply(messages=[initial_message])
-messages.append(initial_message)
-messages.append({"role": "assistant", "content": teacher_initial_reply})
-conversation_history.append({
-    "round": 0,
-    "teacher": teacher_initial_reply,
-    "student": "",
-    "emotion_scores": None
-})
-
-print("System prompt (Teacher):")
-print(teacher_prompt)
-print("=" * 50)
-print("Teacher initial reply:")
-print(teacher_initial_reply)
-print("=" * 50)
-
-# 进行教师课前情绪评估
-initial_emotion_reply = agent_teacher.generate_reply(messages + [emotion_eval_prompt])
-try:
-    initial_emotion_scores = [int(score.strip()) for score in initial_emotion_reply.strip().split(",")]
-except Exception:
-    initial_emotion_scores = []
-conversation_history[0]["emotion_scores"] = initial_emotion_scores
-
-print("Initial emotion scores (Irritated, Frustrated, Disappointed):")
-print(initial_emotion_scores)
-print("=" * 50)
-
-# 进行 10 轮教学对话
+# 进行10轮教学对话，学生先发言
 for i in range(1, 11):
     # 在生成学生回复前，先发送额外的提醒信息，重新强调其身份和回复要求
     student_reminder = student_reminder_prompt
