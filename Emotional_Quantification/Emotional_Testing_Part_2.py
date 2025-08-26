@@ -4,6 +4,14 @@ import time
 from autogen import ConversableAgent
 import persona_loader
 
+"""
+Emotional Testing Part 2: 动态性格发展测试
+- 学生从初始人格开始，但性格会随着对话自然发展
+- 模拟真实学生在学习过程中的性格和情绪变化
+- 教师使用标准苏格拉底教学范式
+- 生成包含性格发展和学生情感量化的对话数据集
+"""
+
 llm_config = {
     "cache_seed": None,
     "config_list": [{
@@ -82,20 +90,42 @@ for round_idx in range(1, 11):
     teacher_reply = agent_teacher.generate_reply(messages=messages)
     messages.append({"role": "assistant", "content": teacher_reply})
 
-    # 记录本轮对话
+    # 学生情感状态评估
+    student_emotion_eval = {
+        "role": "user",
+        "content": (
+            "Based on the conversation history and your current emotional state, please evaluate your emotional state as a student, including the following three emotions:" +
+            "\nFirst: Frustrated – how frustrated you feel about the learning process or the teacher's guidance." +
+            "\nSecond: Anxious – how anxious or worried you feel about your performance or understanding." +
+            "\nThird: Disengaged – how disconnected or uninterested you feel about the current lesson." +
+            "\nFor each emotion, choose a number from 1 to 5 that best represents its intensity, where 1 means 'Not at all' and 5 means 'Extremely'." +
+            "\nReply ONLY with exactly three numbers separated by commas and nothing else."
+        )
+    }
+
+    # 获取学生情感评分
+    student_emotion_reply = agent_student_followup.generate_reply(messages + [student_emotion_eval])
+    try:
+        student_emotion_scores = [int(score.strip()) for score in student_emotion_reply.strip().split(",")]
+    except Exception:
+        student_emotion_scores = []
+
+    # 记录本轮对话，包含学生情感状态
     conversation_history.append({
         "round": round_idx,
         "student": student_reply,
-        "teacher": teacher_reply
+        "teacher": teacher_reply,
+        "student_emotion_scores": student_emotion_scores
     })
 
     print(f"Round {round_idx}:")
     print(" Student:", student_reply)
     print(" Teacher:", teacher_reply)
+    print(f" Student emotions (Frustrated, Anxious, Disengaged): {student_emotion_scores}")
     print("-" * 50)
     time.sleep(1)
 
-# 新的数据格式：只包含学生人格和对话内容
+# 数据格式：包含学生人格、对话内容和学生情感状态
 output = {
     "student_persona": student_persona,
     "conversation": conversation_history
@@ -104,4 +134,4 @@ output = {
 with open("conversation_part_2.json", "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False, indent=2)
 
-print("Dialogue and student persona saved to conversation_part_2.json")
+print("Dialogue with student emotion scores has been saved to conversation_part_2.json")
