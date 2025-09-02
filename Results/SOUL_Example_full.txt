@@ -1,0 +1,860 @@
+[STUDENT_EXERCISE_RECORDS] 学生历史习题作答记录:
+记录1: 题目「Linux系统中，哪个命令用于查看当前目录下的文件？
+A. cd
+B. ls
+C. pwd
+D. mkdir」涉及知识点['Linux基础命令', '文件操作']，学生答对
+记录2: 题目「RPM包管理器的全称是什么？
+A. Red Hat Package Manager
+B. Remote Package Manager
+C. Rapid Package Manager
+D. Real Package Manager」涉及知识点['RPM包管理', 'Linux软件管理']，学生答对
+记录3: 题目「yum和apt-get是同一个软件包管理工具吗？
+A. 是，它们是同一个工具的不同名称
+B. 不是，yum用于Red Hat系列，apt-get用于Debian系列
+C. 是，只是版本不同
+D. 不是，yum是图形界面工具，apt-get是命令行工具」涉及知识点['软件包管理器', 'Linux发行版']，学生答错
+记录4: 题目「使用yum安装软件时，需要手动解决依赖关系吗？
+A. 需要，必须手动安装所有依赖包
+B. 不需要，yum会自动处理依赖关系
+C. 有时需要，取决于软件包复杂度
+D. 需要，但yum会提示需要安装哪些依赖」涉及知识点['yum包管理', '依赖关系']，学生答错
+记录5: 题目「rpm -ivh命令中，-i参数的作用是什么？
+A. 显示软件包信息
+B. 安装软件包
+C. 升级软件包
+D. 删除软件包」涉及知识点['RPM命令', '软件安装']，学生答错
+记录6: 题目「Linux中，chmod 755的含义是什么？
+A. 所有用户都有读写执行权限
+B. 所有者有读写执行权限，组用户和其他用户有读执行权限
+C. 只有所有者有执行权限
+D. 所有用户都只有读权限」涉及知识点['文件权限', 'chmod命令']，学生答对
+记录7: 题目「yum是基于什么包管理系统开发的？
+A. APT
+B. RPM
+C. DEB
+D. TAR」涉及知识点['yum原理', 'RPM关系']，学生答错
+记录8: 题目「grep命令的主要功能是什么？
+A. 文件压缩
+B. 文本搜索和过滤
+C. 文件复制
+D. 目录创建」涉及知识点['文本处理', 'grep命令']，学生答对
+记录9: 题目「Red Hat系列Linux默认使用哪种软件包管理器？
+A. apt-get
+B. pacman
+C. yum/dnf
+D. zypper」涉及知识点['Linux发行版', '软件包管理器']，学生答错
+记录10: 题目「tar -xzf命令的作用是什么？
+A. 创建压缩文件
+B. 解压.tar.gz文件
+C. 查看压缩文件内容
+D. 删除压缩文件」涉及知识点['文件压缩', 'tar命令']，学生答对
+记录11: 题目「yum install时会自动处理软件包的依赖关系吗？
+A. 不会，需要手动处理
+B. 会，这是yum的核心特性
+C. 有时会，取决于网络状况
+D. 会，但需要用户确认每个依赖包」涉及知识点['yum功能', '依赖管理']，学生答错
+记录12: 题目「vi编辑器中，:wq的作用是什么？
+A. 退出不保存
+B. 保存并退出
+C. 只保存不退出
+D. 强制退出」涉及知识点['vi编辑器', '文件保存']，学生答对
+记录13: 题目「RPM和DEB是两种不同的软件包格式吗？
+A. 不是，它们是同一种格式的不同名称
+B. 是，RPM用于Red Hat系列，DEB用于Debian系列
+C. 不是，DEB是RPM的升级版本
+D. 是，但可以相互转换」涉及知识点['软件包格式', 'Linux包管理']，学生答错
+记录14: 题目「systemctl start 服务名 的作用是什么？
+A. 停止系统服务
+B. 启动系统服务
+C. 重启系统服务
+D. 查看服务状态」涉及知识点['系统服务', 'systemctl命令']，学生答对
+记录15: 题目「yum和dnf的关系是什么？
+A. 它们是完全不同的工具
+B. dnf是yum的升级版本
+C. yum是dnf的升级版本
+D. 它们只是名称不同，功能相同」涉及知识点['软件包管理器演进', 'yum和dnf']，学生答错
+
+[TEACHER_AGENT] 初始化完成: 知识感知型ICECoT教师智能体已就绪
+[STUDENT_AGENT] 历史记录加载: 题目数: 15
+[STUDENT_AGENT] 初始化完成: 学生ID: stu_001, 人格: 遇到困难容易沮丧，缺乏自信，历史题目数: 15
+[MONITOR_AGENT] 初始化完成: 教学质量监控系统已就绪
+[KNOWLEDGE_AGENT] 开始生成整体知识状态总结: 基于原始历史习题记录
+[KNOWLEDGE_AGENT] 整体知识状态总结生成完成: 总结长度: 455字符
+[KNOWLEDGE_ANALYSIS] 详细整体知识状态总结结果:
+{
+  "overall_assessment": {
+    "total_exercises": 15,
+    "correct_rate": 0.47,
+    "overall_level": "需要加强"
+  },
+  "knowledge_point_analysis": {
+    "strong_points": [
+      "Linux基础命令",
+      "文本处理",
+      "文件操作"
+    ],
+    "weak_points": [
+      "yum包管理",
+      "软件包管理器",
+      "依赖关系",
+      "RPM与yum关系"
+    ]
+  },
+  "detailed_analysis": {
+    "strength_analysis": "学生在Linux基础命令和文本处理方面表现较好，能够正确理解ls、grep、tar等常用命令的功能，对文件权限管理也有一定掌握。",
+    "weakness_analysis": "学生在软件包管理方面存在明显薄弱点，对yum与RPM的关系理解不清，不了解yum的自动依赖处理特性，对不同Linux发行版的包管理器差异认识不足，需要加强包管理相关知识的学习。"
+  }
+}
+[KNOWLEDGE_STATE_AGENT] 初始化完成: 已加载15条习题记录
+[REFLECTION_AGENT] 初始化完成: 教育反思系统已就绪
+[ORCHESTRATOR_AGENT_AGENT] 初始化完成: 对话协调器已就绪
+[EVENT_BUS] Agent注册: teacher
+[EVENT_BUS] Agent注册: student
+[EVENT_BUS] Agent注册: monitor
+[EVENT_BUS] Agent注册: knowledge_state
+[EVENT_BUS] Agent注册: reflection
+[EVENT_BUS] Agent注册: orchestrator
+[TEACHER_AGENT] 状态更新: ready: True
+[TEACHER_AGENT] 状态更新: icecot_enabled: True
+[STUDENT_AGENT] 状态更新: ready: True
+[STUDENT_AGENT] 状态更新: conversation_started: False
+[MONITOR_AGENT] 状态更新: ready: True
+[MONITOR_AGENT] 状态更新: review_count: 0
+[KNOWLEDGE_STATE_AGENT] 状态更新: ready: True
+[KNOWLEDGE_STATE_AGENT] 状态更新: records_analyzed: 0
+[REFLECTION_AGENT] 状态更新: ready: True
+[REFLECTION_AGENT] 状态更新: experiences_generated: 0
+[EVENT_BUS] 事件总线启动
+[TEACHER_AGENT] 启动: Agent已启动
+[STUDENT_AGENT] 启动: Agent已启动
+[MONITOR_AGENT] 启动: Agent已启动
+[KNOWLEDGE_STATE_AGENT] 启动: Agent已启动
+[REFLECTION_AGENT] 启动: Agent已启动
+[SYSTEM] 反思Agent启动状态: reflection - 已启动
+[ORCHESTRATOR_AGENT_AGENT] 启动对话: 对话ID: d4dcea45-43f4-4714-aa07-5602e2236528
+[EVENT_BUS] 消息发送: orchestrator -> student (task_request)
+[STUDENT_AGENT] 收到消息: 类型: task_request, 发送者: orchestrator
+[STUDENT_AGENT] 设置对话ID: ID: d4dcea45-43f4-4714-aa07-5602e2236528
+[STUDENT_AGENT] 开始生成第一轮发言: 基于题目内容和历史记录生成初始问题
+[STUDENT_AGENT] 初始发言生成: 长度: 61字符
+[STUDENT_AGENT] 添加对话历史: student: 老师，这个关于yum的题目我完全搞不清楚。我对Linux的包管理器一直很迷茫，感觉这些概念都很抽象，...
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第1轮发言: 内容: 老师，这个关于yum的题目我完全搞不清楚。我对Linux的包管理器一直很迷茫，感觉这些概念都很抽象，...
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第1轮: 老师，这个关于yum的题目我完全搞不清楚。我对Linux的包管理器一直很迷茫，感觉这些概念都很抽象，...
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第1轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "沮丧",
+  "emotion_intensity": 8,
+  "learning_attitude": "消极",
+  "confidence_level": 2,
+  "analysis": "学生对Linux包管理器概念感到迷茫和沮丧，表现出明显的挫败感，学习信心严重不足，需要情感支持和基础概念的引导。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 沮丧
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "寻求帮助",
+  "difficulty_type": "概念不清",
+  "need_level": "情感需求",
+  "learning_preference": "情感支持",
+  "analysis": "学生主要表达的是对抽象概念的困惑和学习方向的迷茫，需要首先获得情感支持，然后从基础概念开始引导。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 寻求帮助
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "情感支持策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "首先给予情感鼓励，建立学习信心，然后从最基础的概念开始，用类比的方式解释包管理器的作用",
+  "tone": "温暖和鼓励",
+  "key_points": [
+    "给予情感支持和鼓励",
+    "用生活化类比解释包管理概念"
+  ],
+  "rationale": "学生情绪低落且对抽象概念感到困惑，需要先通过情感支持重建信心，再用具体类比帮助理解"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 情感支持策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 111字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 111字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第1轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 111字符
+[MONITOR_AGENT] 审核通过: 总分: 7, 原因: 教师回复情感支持到位，但在概念解释的清晰度上还有提升空间，需要更具体的技术细节。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 7,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "good",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 6,
+    "content_accuracy": "good",
+    "teaching_method": "good",
+    "relevance": "excellent",
+    "clarity": "fair"
+  },
+  "reason": "教师回复情感支持到位，但在概念解释的清晰度上还有提升空间，需要更具体的技术细节。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 1
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第1轮，长度: 111字符
+[STUDENT_AGENT] 收到教师回复: 第1轮: 别担心，包管理器的概念确实比较抽象，但其实它就像我们手机上的应用商店一样！你想想，当你要安装一个AP...
+[STUDENT_AGENT] 添加对话历史: teacher: 别担心，包管理器的概念确实比较抽象，但其实它就像我们手机上的应用商店一样！你想想，当你要安装一个AP...
+[STUDENT_AGENT] 情绪分析: 第1轮, 新情绪: 困惑
+[STUDENT_AGENT] 开始生成第1轮回复: 基于教师回复: 别担心，包管理器的概念确实比较抽象，但其实它就像我们手机上的应用商店一样！你想想，当你要安装一个AP... 当前情绪: 困惑
+[STUDENT_AGENT] 第1轮回复生成: 长度: 51字符, 新情绪: 困惑
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[STUDENT_AGENT] 添加对话历史: student: 嗯...yum确实是用来解决依赖关系的吧？但是我不太确定它和RPM到底是什么关系，感觉还是很困惑.....
+[CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第2轮
+[CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。",
+  "student_understanding": "学生情绪从沮丧转为困惑，对yum概念理解逐步深入。",
+  "round_number": 2
+}
+[STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[STUDENT_AGENT] 继续对话: 第2轮
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 初始发言生成: 长度: 51字符
+[STUDENT_AGENT] 添加对话历史: student: 嗯...yum确实是用来解决依赖关系的吧？但是我不太确定它和RPM到底是什么关系，感觉还是很困惑.....
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第2轮发言: 内容: 嗯...yum确实是用来解决依赖关系的吧？但是我不太确定它和RPM到底是什么关系，感觉还是很困惑.....
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第2轮: 嗯...yum确实是用来解决依赖关系的吧？但是我不太确定它和RPM到底是什么关系，感觉还是很困惑.....
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第2轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "困惑",
+  "emotion_intensity": 6,
+  "learning_attitude": "中性",
+  "confidence_level": 4,
+  "analysis": "学生开始尝试理解概念，情绪有所好转，但对yum和RPM的关系仍感困惑，需要更清晰的概念解释。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 困惑
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "理解概念",
+  "difficulty_type": "关系不明",
+  "need_level": "认知需求",
+  "learning_preference": "详细讲解",
+  "analysis": "学生已经开始思考yum的作用，但对yum和RPM的层次关系理解不清，需要通过具体的层次关系说明来澄清概念。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 理解概念
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "启发式策略",
+  "secondary_strategy": "认知支持策略",
+  "approach": "通过层次关系的类比，帮助学生理解yum和RPM的上下级关系，逐步澄清概念",
+  "tone": "鼓励和引导",
+  "key_points": [
+    "用层次关系类比说明yum和RPM",
+    "引导学生思考工具之间的关系"
+  ],
+  "rationale": "学生已有基本理解但关系不清，适合用启发式提问帮助其理清概念层次"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 启发式策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 123字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 123字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第2轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 123字符
+[MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复采用了很好的类比方法，情感支持充分，但技术概念的准确性可以进一步加强。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 7,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复采用了很好的类比方法，情感支持充分，但技术概念的准确性可以进一步加强。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 2
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第2轮，长度: 123字符
+[STUDENT_AGENT] 收到教师回复: 第2轮: 很好！你已经理解了yum的基本作用。现在让我们理清yum和RPM的关系。想象一下：RPM就像是包装盒...
+[STUDENT_AGENT] 添加对话历史: teacher: 很好！你已经理解了yum的基本作用。现在让我们理清yum和RPM的关系。想象一下：RPM就像是包装盒...
+[STUDENT_AGENT] 情绪分析: 第2轮, 新情绪: 思考
+[STUDENT_AGENT] 开始生成第2轮回复: 基于教师回复: 很好！你已经理解了yum的基本作用。现在让我们理清yum和RPM的关系。想象一下：RPM就像是包装盒... 当前情绪: 思考
+[STUDENT_AGENT] 第2轮回复生成: 长度: 59字符, 新情绪: 思考
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[STUDENT_AGENT] 添加对话历史: student: 哦，原来yum是基于RPM的！那选项A应该是对的。但是选项B说yum是区别于RPM的封装模式，这个我...
+[CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第3轮
+[CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。",
+  "student_understanding": "学生情绪从困惑转为思考，对yum概念理解逐步深入。",
+  "round_number": 3
+}
+[STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[STUDENT_AGENT] 继续对话: 第3轮
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 初始发言生成: 长度: 59字符
+[STUDENT_AGENT] 添加对话历史: student: 哦，原来yum是基于RPM的！那选项A应该是对的。但是选项B说yum是区别于RPM的封装模式，这个我...
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第3轮发言: 内容: 哦，原来yum是基于RPM的！那选项A应该是对的。但是选项B说yum是区别于RPM的封装模式，这个我...
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第3轮: 哦，原来yum是基于RPM的！那选项A应该是对的。但是选项B说yum是区别于RPM的封装模式，这个我...
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第3轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "思考",
+  "emotion_intensity": 5,
+  "learning_attitude": "积极",
+  "confidence_level": 5,
+  "analysis": "学生开始主动思考和分析，情绪转向积极，但对某些选项的理解还不够深入，需要进一步引导。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 思考
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "分析选项",
+  "difficulty_type": "细节理解",
+  "need_level": "认知需求",
+  "learning_preference": "逐步分析",
+  "analysis": "学生已经理解了基本关系，开始分析具体选项，但对'封装模式'等术语理解不够准确，需要针对性解释。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 分析选项
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "启发式策略",
+  "secondary_strategy": "概念澄清策略",
+  "approach": "通过对比分析帮助学生理解'封装模式'的含义，引导其正确理解选项含义",
+  "tone": "肯定和引导",
+  "key_points": [
+    "肯定学生的正确理解",
+    "澄清'封装模式'的概念"
+  ],
+  "rationale": "学生思维活跃且有正确理解，适合通过启发式引导深入分析选项细节"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 启发式策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 130字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 130字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第3轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 130字符
+[MONITOR_AGENT] 审核通过: 总分: 8, 原因: 教师回复在概念澄清方面表现优秀，情感支持到位，但在引导学生深入思考方面还可以更进一步。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 8,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 7,
+    "content_accuracy": "excellent",
+    "teaching_method": "good",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复在概念澄清方面表现优秀，情感支持到位，但在引导学生深入思考方面还可以更进一步。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 3
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第3轮，长度: 130字符
+[STUDENT_AGENT] 收到教师回复: 第3轮: 太棒了！你理解对了，yum确实是基于RPM的高级工具。关于选项B，'封装模式'这个词很关键。yum并...
+[STUDENT_AGENT] 添加对话历史: teacher: 太棒了！你理解对了，yum确实是基于RPM的高级工具。关于选项B，'封装模式'这个词很关键。yum并...
+[STUDENT_AGENT] 情绪分析: 第3轮, 新情绪: 理解
+[STUDENT_AGENT] 开始生成第3轮回复: 基于教师回复: 太棒了！你理解对了，yum确实是基于RPM的高级工具。关于选项B，'封装模式'这个词很关键。yum并... 当前情绪: 理解
+[STUDENT_AGENT] 第3轮回复生成: 长度: 64字符, 新情绪: 理解
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[STUDENT_AGENT] 添加对话历史: student: 我明白了！yum不是区别于RPM的，而是基于RPM的高级工具。那选项B是错误的。选项C呢，yum确实...
+[CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第4轮
+[CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。",
+  "student_understanding": "学生情绪从思考转为理解，对yum概念理解逐步深入。",
+  "round_number": 4
+}
+[STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[STUDENT_AGENT] 继续对话: 第4轮
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 初始发言生成: 长度: 64字符
+[STUDENT_AGENT] 添加对话历史: student: 我明白了！yum不是区别于RPM的，而是基于RPM的高级工具。那选项B是错误的。选项C呢，yum确实...
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第4轮发言: 内容: 我明白了！yum不是区别于RPM的，而是基于RPM的高级工具。那选项B是错误的。选项C呢，yum确实...
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第4轮: 我明白了！yum不是区别于RPM的，而是基于RPM的高级工具。那选项B是错误的。选项C呢，yum确实...
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第4轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "理解",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 6,
+  "analysis": "学生表现出明显的理解和进步，开始能够正确分析选项，学习信心提升，思维更加清晰。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 理解
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "验证理解",
+  "difficulty_type": "无明显困难",
+  "need_level": "确认需求",
+  "learning_preference": "获得肯定",
+  "analysis": "学生已经正确理解了yum和RPM的关系，现在需要验证对其他选项的理解，寻求老师的确认。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 验证理解
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "肯定强化策略",
+  "secondary_strategy": "启发式策略",
+  "approach": "给予积极肯定，然后引导学生思考红帽系列Linux的特点，继续分析剩余选项",
+  "tone": "赞赏和鼓励",
+  "key_points": [
+    "肯定学生的正确理解",
+    "引导分析红帽系列Linux特点"
+  ],
+  "rationale": "学生理解正确且信心提升，需要及时肯定并引导继续深入分析"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 肯定强化策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 139字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 139字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第4轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 139字符
+[MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复质量显著提升，肯定学生成果的同时有效引导继续学习，专业性和情感支持都很到位。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "good"
+  },
+  "reason": "教师回复质量显著提升，肯定学生成果的同时有效引导继续学习，专业性和情感支持都很到位。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 4
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第4轮，长度: 139字符
+[STUDENT_AGENT] 收到教师回复: 第4轮: 完全正确！你已经很好地理解了yum和RPM的关系。关于选项C，你提到yum是红帽系列的默认包管理器，...
+[STUDENT_AGENT] 添加对话历史: teacher: 完全正确！你已经很好地理解了yum和RPM的关系。关于选项C，你提到yum是红帽系列的默认包管理器，...
+[STUDENT_AGENT] 情绪分析: 第4轮, 新情绪: 恍然大悟
+[STUDENT_AGENT] 开始生成第4轮回复: 基于教师回复: 完全正确！你已经很好地理解了yum和RPM的关系。关于选项C，你提到yum是红帽系列的默认包管理器，... 当前情绪: 恍然大悟
+[STUDENT_AGENT] 第4轮回复生成: 长度: 57字符, 新情绪: 恍然大悟
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[STUDENT_AGENT] 添加对话历史: student: 等等，我想起来了！yum的一个重要特点就是自动处理依赖关系，用户不需要手动去了解和处理。所以选项D也...
+[CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第5轮
+[CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。",
+  "student_understanding": "学生情绪从理解转为恍然大悟，对yum概念理解逐步深入。",
+  "round_number": 5
+}
+[STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[STUDENT_AGENT] 继续对话: 第5轮
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 初始发言生成: 长度: 57字符
+[STUDENT_AGENT] 添加对话历史: student: 等等，我想起来了！yum的一个重要特点就是自动处理依赖关系，用户不需要手动去了解和处理。所以选项D也...
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第5轮发言: 内容: 等等，我想起来了！yum的一个重要特点就是自动处理依赖关系，用户不需要手动去了解和处理。所以选项D也...
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第5轮: 等等，我想起来了！yum的一个重要特点就是自动处理依赖关系，用户不需要手动去了解和处理。所以选项D也...
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第5轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "恍然大悟",
+  "emotion_intensity": 8,
+  "learning_attitude": "积极",
+  "confidence_level": 7,
+  "analysis": "学生表现出突然理解的兴奋，对yum的核心特性有了深入认识，学习状态非常积极。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 恍然大悟
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "深入理解",
+  "difficulty_type": "无明显困难",
+  "need_level": "确认需求",
+  "learning_preference": "自主分析",
+  "analysis": "学生已经掌握了yum的核心特性，能够自主分析和推理，表现出很强的学习主动性。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 深入理解
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "肯定强化策略",
+  "secondary_strategy": "深化理解策略",
+  "approach": "强化学生的正确理解，并帮助其整合所有知识点，形成完整的知识体系",
+  "tone": "赞赏和鼓励",
+  "key_points": [
+    "强化依赖自动处理的理解",
+    "帮助整合所有选项分析"
+  ],
+  "rationale": "学生理解透彻且主动性强，适合通过肯定强化帮助其建立完整知识框架"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 肯定强化策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 112字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 112字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第5轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 112字符
+[MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复准确把握了学生的理解突破点，给予了及时的肯定强化，教学效果优秀。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复准确把握了学生的理解突破点，给予了及时的肯定强化，教学效果优秀。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 5
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第5轮，长度: 112字符
+[STUDENT_AGENT] 收到教师回复: 第5轮: 太棒了！你抓住了yum最重要的特性——自动依赖处理！这正是yum相比于直接使用rpm命令的巨大优势。...
+[STUDENT_AGENT] 添加对话历史: teacher: 太棒了！你抓住了yum最重要的特性——自动依赖处理！这正是yum相比于直接使用rpm命令的巨大优势。...
+[STUDENT_AGENT] 情绪分析: 第5轮, 新情绪: 兴奋
+[STUDENT_AGENT] 开始生成第5轮回复: 基于教师回复: 太棒了！你抓住了yum最重要的特性——自动依赖处理！这正是yum相比于直接使用rpm命令的巨大优势。... 当前情绪: 兴奋
+[STUDENT_AGENT] 第5轮回复生成: 长度: 56字符, 新情绪: 兴奋
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[STUDENT_AGENT] 添加对话历史: student: 所以答案应该是B和D都是错误的！yum既不是区别于RPM的封装模式，用户也不需要手动了解依赖关系。我...
+[CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第6轮
+[CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。",
+  "student_understanding": "学生情绪从恍然大悟转为兴奋，对yum概念理解逐步深入。",
+  "round_number": 6
+}
+[STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[STUDENT_AGENT] 继续对话: 第6轮
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 初始发言生成: 长度: 56字符
+[STUDENT_AGENT] 添加对话历史: student: 所以答案应该是B和D都是错误的！yum既不是区别于RPM的封装模式，用户也不需要手动了解依赖关系。我...
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第6轮发言: 内容: 所以答案应该是B和D都是错误的！yum既不是区别于RPM的封装模式，用户也不需要手动了解依赖关系。我...
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第6轮: 所以答案应该是B和D都是错误的！yum既不是区别于RPM的封装模式，用户也不需要手动了解依赖关系。我...
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第6轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "兴奋",
+  "emotion_intensity": 8,
+  "learning_attitude": "积极",
+  "confidence_level": 8,
+  "analysis": "学生表现出强烈的成就感和兴奋，能够综合分析所有选项，学习信心大幅提升。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 兴奋
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "综合应用",
+  "difficulty_type": "无明显困难",
+  "need_level": "确认需求",
+  "learning_preference": "获得肯定",
+  "analysis": "学生已经能够综合运用所学知识正确分析题目，需要获得老师的最终确认和肯定。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 综合应用
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "肯定强化策略",
+  "secondary_strategy": "知识整合策略",
+  "approach": "给予充分肯定，帮助学生整合和巩固所学知识，建立完整的知识体系",
+  "tone": "赞赏和鼓励",
+  "key_points": [
+    "充分肯定学生的正确分析",
+    "帮助巩固知识要点"
+  ],
+  "rationale": "学生完全掌握了知识点，需要通过肯定强化巩固学习成果"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 肯定强化策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 103字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 103字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第6轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 103字符
+[MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复充分肯定学生的正确分析，知识整合效果良好，帮助学生建立了完整的知识体系。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复充分肯定学生的正确分析，知识整合效果良好，帮助学生建立了完整的知识体系。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 6
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第6轮，长度: 103字符
+[STUDENT_AGENT] 收到教师回复: 第6轮: 完全正确！你的分析非常准确。选项B和D确实是错误的：yum不是区别于RPM的封装模式，而是基于RPM...
+[STUDENT_AGENT] 添加对话历史: teacher: 完全正确！你的分析非常准确。选项B和D确实是错误的：yum不是区别于RPM的封装模式，而是基于RPM...
+[STUDENT_AGENT] 情绪分析: 第6轮, 新情绪: 满意
+[STUDENT_AGENT] 开始生成第6轮回复: 基于教师回复: 完全正确！你的分析非常准确。选项B和D确实是错误的：yum不是区别于RPM的封装模式，而是基于RPM... 当前情绪: 满意
+[STUDENT_AGENT] 第6轮回复生成: 长度: 61字符, 新情绪: 满意
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[STUDENT_AGENT] 添加对话历史: student: 太好了！现在我对yum有了清晰的认识。它是基于RPM的高级包管理工具，能自动处理依赖关系，是红帽系列...
+[CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第7轮
+[CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。",
+  "student_understanding": "学生情绪从兴奋转为满意，对yum概念理解逐步深入。",
+  "round_number": 7
+}
+[STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[STUDENT_AGENT] 继续对话: 第7轮
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 初始发言生成: 长度: 61字符
+[STUDENT_AGENT] 添加对话历史: student: 太好了！现在我对yum有了清晰的认识。它是基于RPM的高级包管理工具，能自动处理依赖关系，是红帽系列...
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第7轮发言: 内容: 太好了！现在我对yum有了清晰的认识。它是基于RPM的高级包管理工具，能自动处理依赖关系，是红帽系列...
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第7轮: 太好了！现在我对yum有了清晰的认识。它是基于RPM的高级包管理工具，能自动处理依赖关系，是红帽系列...
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第7轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "满意",
+  "emotion_intensity": 7,
+  "learning_attitude": "积极",
+  "confidence_level": 8,
+  "analysis": "学生表现出对学习成果的满意和自信，能够清晰地总结和表达所学知识，学习状态非常良好。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 满意
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "知识巩固",
+  "difficulty_type": "无明显困难",
+  "need_level": "成就需求",
+  "learning_preference": "知识总结",
+  "analysis": "学生已经形成了完整的知识体系，能够自主总结和表达，表现出很强的学习成就感。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 知识巩固
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "知识拓展策略",
+  "secondary_strategy": "肯定强化策略",
+  "approach": "在肯定学生成果的基础上，适当拓展相关知识，激发继续学习的兴趣",
+  "tone": "赞赏和启发",
+  "key_points": [
+    "肯定学生的知识掌握",
+    "适当拓展相关知识"
+  ],
+  "rationale": "学生知识掌握扎实，适合在巩固基础上进行适度拓展"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 知识拓展策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 116字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 116字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第7轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 116字符
+[MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复在知识拓展方面表现突出，帮助学生理解包管理器的发展历程，专业水平很高。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 8,
+    "tone_quality": "excellent",
+    "emotional_support": "good",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 9,
+    "content_accuracy": "excellent",
+    "teaching_method": "excellent",
+    "relevance": "excellent",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复在知识拓展方面表现突出，帮助学生理解包管理器的发展历程，专业水平很高。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 7
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第7轮，长度: 116字符
+[STUDENT_AGENT] 收到教师回复: 第7轮: 非常棒！你不仅答对了题目，更重要的是理解了yum在Linux生态系统中的重要作用。yum确实代表了包...
+[STUDENT_AGENT] 添加对话历史: teacher: 非常棒！你不仅答对了题目，更重要的是理解了yum在Linux生态系统中的重要作用。yum确实代表了包...
+[STUDENT_AGENT] 情绪分析: 第7轮, 新情绪: 积极
+[STUDENT_AGENT] 开始生成第7轮回复: 基于教师回复: 非常棒！你不仅答对了题目，更重要的是理解了yum在Linux生态系统中的重要作用。yum确实代表了包... 当前情绪: 积极
+[STUDENT_AGENT] 第7轮回复生成: 长度: 59字符, 新情绪: 积极
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[STUDENT_AGENT] 添加对话历史: student: 谢谢老师的耐心指导！通过这道题，我不仅学会了yum的特点，还理解了包管理器的发展逻辑。我想继续学习更...
+[CONVERSATION_ANALYZER_AGENT] 开始对话结束分析: 第8轮
+[CONVERSATION_ANALYZER_AGENT] 对话继续: 理由: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[CONVERSATION_ANALYZER_ANALYSIS] 详细对话结束分析结果:
+{
+  "should_end": false,
+  "reason": "学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。",
+  "student_understanding": "学生情绪从满意转为积极，对yum概念理解逐步深入。",
+  "round_number": 8
+}
+[STUDENT_AGENT] 对话分析结果: should_end: False, reason: 学生理解在深入，情绪持续好转，需要继续巩固和拓展知识。
+[STUDENT_AGENT] 继续对话: 第8轮
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 初始发言生成: 长度: 59字符
+[STUDENT_AGENT] 添加对话历史: student: 谢谢老师的耐心指导！通过这道题，我不仅学会了yum的特点，还理解了包管理器的发展逻辑。我想继续学习更...
+[EVENT_BUS] 消息发送: student -> orchestrator (system_control)
+[EVENT_BUS] 消息发送: student -> teacher (task_request)
+[STUDENT_AGENT] 第8轮发言: 内容: 谢谢老师的耐心指导！通过这道题，我不仅学会了yum的特点，还理解了包管理器的发展逻辑。我想继续学习更...
+[TEACHER_AGENT] 收到消息: 类型: task_request, 发送者: student
+[TEACHER_AGENT] 收到学生消息: 第8轮: 谢谢老师的耐心指导！通过这道题，我不仅学会了yum的特点，还理解了包管理器的发展逻辑。我想继续学习更...
+[TEACHER_AGENT] 开始ICECoT流程（含知识状态）: 第8轮分析
+[TEACHER_AGENT] 开始情绪分析: 基于学生发言内容
+[TEACHER_ANALYSIS] 详细情绪分析结果:
+{
+  "primary_emotion": "积极",
+  "emotion_intensity": 9,
+  "learning_attitude": "积极",
+  "confidence_level": 9,
+  "analysis": "学生表现出强烈的学习热情和感谢，对整个学习过程非常满意，表达了继续学习的强烈愿望。"
+}
+[TEACHER_AGENT] 开始意图推断（含知识状态）: 基于情绪: 积极
+[TEACHER_ANALYSIS] 详细意图推断（含知识状态）结果:
+{
+  "learning_goal": "继续学习",
+  "difficulty_type": "无明显困难",
+  "need_level": "成长需求",
+  "learning_preference": "自主探索",
+  "analysis": "学生已经建立了强烈的学习信心和兴趣，表现出继续深入学习Linux知识的强烈动机。"
+}
+[TEACHER_AGENT] 开始策略选择（含知识状态）: 目标: 继续学习
+[TEACHER_ANALYSIS] 详细策略选择（含知识状态）结果:
+{
+  "primary_strategy": "激励引导策略",
+  "secondary_strategy": "学习规划策略",
+  "approach": "给予充分肯定和鼓励，引导学生制定后续学习计划，保持学习热情",
+  "tone": "鼓励和启发",
+  "key_points": [
+    "充分肯定学习成果",
+    "激发继续学习的动力"
+  ],
+  "rationale": "学生学习状态极佳，适合通过激励引导保持学习热情并规划后续学习"
+}
+[TEACHER_AGENT] 开始生成回复（含知识状态）: 策略: 激励引导策略
+[TEACHER_AGENT] 教学回复生成成功（含知识状态）: 回复长度: 120字符
+[TEACHER_AGENT] ICECoT流程完成（含知识状态）: 生成回复长度: 120字符
+[EVENT_BUS] 消息发送: teacher -> monitor (review_request)
+[MONITOR_AGENT] 收到消息: 类型: review_request, 发送者: teacher
+[MONITOR_AGENT] 收到审核请求: 首次审核 - 第8轮
+[MONITOR_AGENT] 开始综合审核: 教师回复长度: 120字符
+[MONITOR_AGENT] 审核通过: 总分: 9, 原因: 教师回复很好地总结了整个学习过程，激励效果显著，但在具体技术内容的深度上可以进一步加强。
+[MONITOR_ANALYSIS] 详细详细审核结果:
+{
+  "approved": true,
+  "overall_score": 9,
+  "emotional_aspect": {
+    "score": 9,
+    "tone_quality": "excellent",
+    "emotional_support": "excellent",
+    "teacher_emotion": "calm"
+  },
+  "professional_aspect": {
+    "score": 8,
+    "content_accuracy": "good",
+    "teaching_method": "excellent",
+    "relevance": "good",
+    "clarity": "excellent"
+  },
+  "reason": "教师回复很好地总结了整个学习过程，激励效果显著，但在具体技术内容的深度上可以进一步加强。"
+}
+[EVENT_BUS] 消息发送: monitor -> teacher (review_response)
+[MONITOR_AGENT] 状态更新: review_count: 8
+[TEACHER_AGENT] 收到消息: 类型: review_response, 发送者: monitor
+[EVENT_BUS] 消息发送: teacher -> student (task_response)
+[EVENT_BUS] 消息发送: teacher -> orchestrator (system_control)
+[STUDENT_AGENT] 收到消息: 类型: task_response, 发送者: teacher
+[TEACHER_AGENT] 回复已发送: 第8轮，长度: 120字符
+[STUDENT_AGENT] 收到教师回复: 第8轮: 我很高兴看到你从困惑到理解，再到主动思考的整个过程！这正是学习的魅力所在。你现在对包管理器有了深入理...
+[STUDENT_AGENT] 添加对话历史: teacher: 我很高兴看到你从困惑到理解，再到主动思考的整个过程！这正是学习的魅力所在。你现在对包管理器有了深入理...
+[SYSTEM] 对话正常完成
+[SYSTEM] 教学效果评估: 学生从对yum概念完全困惑，到深入理解并掌握核心特性，情绪显著好转，学习热情高涨
