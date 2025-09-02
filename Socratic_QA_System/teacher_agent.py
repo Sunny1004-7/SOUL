@@ -304,13 +304,20 @@ class TeacherAgent(BaseAgent):
 学生状态：{json.dumps(student_state, ensure_ascii=False)}{knowledge_context}
 
 请从以下维度分析：
-1. 主要意图：寻求答案、理解概念、验证想法、寻求鼓励等
-2. 知识需求：具体知识点、概念理解、解题方法、思维训练等
-3. 困难类型：概念不清、方法不明、思维障碍、情绪困扰等
-4. 学习阶段：探索阶段、理解阶段、应用阶段、反思阶段等
-5. 期望帮助：直接答案、引导思考、方法指导、情感支持等
+1. learning_goal：学生的学习目标（如：理解概念、掌握方法、解决问题、验证想法等）
+2. difficulty_type：遇到的困难类型（如：概念不清、关系不明、方法不会、逻辑混乱等）
+3. need_level：需求层次（如：认知需求、情感需求、技能需求、应用需求等）
+4. learning_preference：学习偏好（如：详细讲解、启发引导、实例演示、步骤分解等）
+5. analysis：综合分析（对学生当前状态和需求的详细分析说明）
 
-请以JSON格式返回分析结果。
+请严格按照以下JSON格式返回分析结果：
+{
+  "learning_goal": "学习目标描述",
+  "difficulty_type": "困难类型描述",
+  "need_level": "需求层次描述",
+  "learning_preference": "学习偏好描述",
+  "analysis": "综合分析说明"
+}
 """
             
             messages = [
@@ -337,11 +344,11 @@ class TeacherAgent(BaseAgent):
     def _get_default_intention_analysis(self) -> Dict[str, Any]:
         """获取默认的意图分析结果"""
         return {
-            "main_intention": "seek_understanding",
-            "knowledge_need": "concept_clarification",
-            "difficulty_type": "conceptual_confusion",
-            "learning_stage": "understanding",
-            "expected_help": "guided_thinking"
+            "learning_goal": "理解概念",
+            "difficulty_type": "概念不清",
+            "need_level": "认知需求",
+            "learning_preference": "启发引导",
+            "analysis": "学生需要通过引导来理解相关概念，建议采用启发式教学方法帮助其澄清理解。"
         }
 
     def _select_teaching_strategy_with_knowledge(self, emotion_analysis: Dict[str, Any], intention_analysis: Dict[str, Any]) -> Dict[str, Any]:
@@ -358,17 +365,35 @@ class TeacherAgent(BaseAgent):
 情绪分析：{json.dumps(emotion_analysis, ensure_ascii=False)}
 意图分析：{json.dumps(intention_analysis, ensure_ascii=False)}{knowledge_context}
 
-请从以下策略中选择并说明理由：
-1. 苏格拉底式提问：通过层层递进的问题引导学生思考
-2. 概念分解：将复杂概念分解为简单易懂的部分
-3. 类比教学：使用生活中的例子类比抽象概念
-4. 错误分析：分析学生的错误，引导其发现逻辑漏洞
-5. 鼓励支持：给予情感支持和鼓励，增强学习信心
-6. 思维训练：训练学生的逻辑思维和批判性思维
-7. 知识连接：帮助学生建立知识间的联系
-8. 实践应用：通过实际应用加深理解
+可选择的教学策略包括：
+1. 启发式策略：通过苏格拉底式提问引导学生思考
+2. 认知支持策略：概念分解、知识连接、类比教学
+3. 情感支持策略：鼓励支持、减压引导
+4. 技能训练策略：方法指导、步骤演示
+5. 反思策略：错误分析、思维训练
+6. 应用策略：实践应用、情境教学
+...其它你认为科学合理且适用的教学策略
 
-请以JSON格式返回策略选择和理由。
+请分析并选择教学策略，包括：
+- primary_strategy：主要策略
+- secondary_strategy：辅助策略
+- approach：具体实施方法
+- tone：交流语调风格
+- key_points：关键要点列表
+- rationale：选择理由说明
+
+请严格按照以下JSON格式返回策略选择：
+{
+  "primary_strategy": "主要策略名称",
+  "secondary_strategy": "辅助策略名称",
+  "approach": "具体实施方法描述",
+  "tone": "交流语调风格",
+  "key_points": [
+    "关键要点1",
+    "关键要点2"
+  ],
+  "rationale": "选择理由的详细说明"
+}
 """
             
             messages = [
@@ -395,9 +420,15 @@ class TeacherAgent(BaseAgent):
     def _get_default_strategy_selection(self) -> Dict[str, Any]:
         """获取默认的策略选择结果"""
         return {
-            "primary_strategy": "socratic_questioning",
-            "secondary_strategy": "concept_breakdown",
-            "reasoning": "基于学生的理解需求，采用苏格拉底式提问引导思考，同时分解概念帮助理解"
+            "primary_strategy": "启发式策略",
+            "secondary_strategy": "认知支持策略",
+            "approach": "通过苏格拉底式提问引导学生思考，结合概念分解帮助理解",
+            "tone": "鼓励和引导",
+            "key_points": [
+                "引导学生主动思考",
+                "分解复杂概念为简单部分"
+            ],
+            "rationale": "基于学生的理解需求，采用启发式提问引导思考，同时提供认知支持帮助理解"
         }
 
     def _generate_teaching_response_with_knowledge(self, student_message: str, emotion_analysis: Dict[str, Any], 
