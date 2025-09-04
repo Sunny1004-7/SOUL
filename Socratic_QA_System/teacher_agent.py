@@ -21,7 +21,7 @@ class TeacherAgent(BaseAgent):
         self.analysis_ready = False
         
         # 教师角色的基础prompt
-        self.base_prompt = """你是一名经验丰富、富有耐心的中学数学老师。
+        self.base_prompt = """你是一名经验丰富、富有耐心的老师。
 
 你的教学理念：
 - 采用苏格拉底式教学方法，通过提问引导学生自己发现答案
@@ -442,7 +442,7 @@ class TeacherAgent(BaseAgent):
                 knowledge_context = f"\n\n学生知识状态摘要：{self.knowledge_summary}"
             
             prompt = f"""
-你是一名经验丰富的中学数学老师，现在需要回复学生的问题。
+你是一名经验丰富的老师，现在需要回复学生的问题。
 
 学生消息：{student_message}
 对话轮次：第{round_number}轮
