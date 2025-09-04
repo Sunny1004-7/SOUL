@@ -1,0 +1,19 @@
+{
+  "发热激活物的分类和理_困惑_沮丧_7": {
+    "problem_scenario": "发热激活物的分类和理解教学",
+    "student_emotions": [
+      "困惑",
+      "沮丧"
+    ],
+    "student_understanding_level": 4.0,
+    "teacher_strategies": [
+      "情感支持与鼓励",
+      "引导式提问"
+    ],
+    "effectiveness_score": 6.0,
+    "applicable_conditions": [
+      "学生对概念有初步接触但理解不深",
+      "需要个性化的学习支持和具体示例"
+    ]
+  }
+}
